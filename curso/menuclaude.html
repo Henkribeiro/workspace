@@ -682,7 +682,7 @@
                 titulo: 'Administração',
                 descricao: 'Forme-se em uma das áreas mais versáteis do mercado',
                 area: 'negocios',
-                modalidade: 'presencial',
+                modalidade: 'presencial | EAD',
                 categoria: 'Gestão e Negócios',
                 grau: 'Bacharel',
                 duracao: '8 semestres',
@@ -690,7 +690,10 @@
                 precoAtual: 425,
                 desconto: 40,
                 badge: 'destaque',
-                cor: '#1e40af'
+                cor: '#1e40af',
+                checkout:'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
+                pagina:'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/administracao',
+                imagem:'https://raw.githubusercontent.com/Henkribeiro/Georgia/refs/heads/main/Adm.png'
             },
             {
                 id: 2,
@@ -705,7 +708,10 @@
                 precoAtual: 780,
                 desconto: 35,
                 badge: 'novo',
-                cor: '#059669'
+                cor: '#059669',
+                checkout:'',
+                pagina:'',
+                imagem:''
             },
             {
                 id: 3,
@@ -720,7 +726,10 @@
                 precoAtual: 390,
                 desconto: 40,
                 badge: 'promocao',
-                cor: '#7c3aed'
+                cor: '#7c3aed',
+                checkout:'',
+                pagina:'',
+                imagem:''
             },
             {
                 id: 4,
@@ -735,7 +744,10 @@
                 precoAtual: 665,
                 desconto: 30,
                 badge: 'destaque',
-                cor: '#dc2626'
+                cor: '#dc2626',
+                checkout:'',
+                pagina:'',
+                imagem:''
             },
             {
                 id: 5,
@@ -750,7 +762,10 @@
                 precoAtual: 560,
                 desconto: 30,
                 badge: 'novo',
-                cor: '#059669'
+                cor: '#059669',
+                checkout:'',
+                pagina:'',
+                imagem:''
             },
             {
                 id: 6,
@@ -765,7 +780,10 @@
                 precoAtual: 330,
                 desconto: 40,
                 badge: 'promocao',
-                cor: '#f59e0b'
+                cor: '#f59e0b',
+                checkout:'',
+                pagina:'',
+                imagem:''
             },
             {
                 id: 7,
@@ -780,7 +798,10 @@
                 precoAtual: 2000,
                 desconto: 20,
                 badge: 'destaque',
-                cor: '#dc2626'
+                cor: '#dc2626',
+                checkout:'',
+                pagina:'',
+                imagem:''
             },
             {
                 id: 8,
@@ -795,7 +816,10 @@
                 precoAtual: 686,
                 desconto: 30,
                 badge: 'novo',
-                cor: '#7c3aed'
+                cor: '#7c3aed',
+                checkout:'',
+                pagina:'',
+                imagem:''
             },
             {
                 id: 9,
@@ -810,7 +834,10 @@
                 precoAtual: 623,
                 desconto: 30,
                 badge: 'destaque',
-                cor: '#1e40af'
+                cor: '#1e40af',
+                checkout:'',
+                pagina:'',
+                imagem:''
             },
             {
                 id: 10,
@@ -825,7 +852,10 @@
                 precoAtual: 336,
                 desconto: 30,
                 badge: 'promocao',
-                cor: '#1e40af'
+                cor: '#1e40af',
+                checkout:'',
+                pagina:'',
+                imagem:''
             },
             {
                 id: 11,
@@ -840,7 +870,10 @@
                 precoAtual: 595,
                 desconto: 30,
                 badge: 'novo',
-                cor: '#dc2626'
+                cor: '#dc2626',
+                checkout:'',
+                pagina:'',
+                imagem:''
             },
 
             {
@@ -856,7 +889,11 @@
                 precoAtual: 770,
                 desconto: 30,
                 badge: 'destaque',
-                cor: '#059669'
+                cor: '#059669',
+                checkout:'',
+                pagina:'',
+                imagem:''
+                
             },
 
             {
@@ -874,7 +911,8 @@
                 badge: 'destaque',
                 cor: '#059669',
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial&utm_source=graduninassau&utm_campaign=analise-e-desenvolvimento-de-sistemas',
-                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/administracao'
+                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/administracao',
+                imagem:''
             }
 
         ];
@@ -918,7 +956,7 @@
                     
 
                     <div class="course-image">
-                        <img src="${gerarImagemCurso(curso)}" alt="Curso de ${curso.titulo}">
+                        <img src="${curso.imagem}" alt="Curso de ${curso.titulo}">
                         <div class="image-overlay"></div>
                         <div class="image-content">
                             <div class="category">${curso.categoria}</div>
