@@ -583,10 +583,7 @@
 
 <body>
     <div class="container">
-        <div class="header">
-            <h1>Cursos UNINASSAU</h1>
-            <p>Encontre o curso ideal para sua carreira</p>
-        </div>
+
 
         <div class="filters-container">
             <div class="filter-section">
@@ -682,7 +679,7 @@
                 titulo: 'Administração',
                 descricao: 'Forme-se em uma das áreas mais versáteis do mercado',
                 area: 'negocios',
-                modalidade: 'presencial | EAD',
+                modalidade: 'Presencial | EAD',
                 categoria: 'Gestão e Negócios',
                 grau: 'Bacharel',
                 duracao: '8 semestres',
@@ -691,16 +688,16 @@
                 desconto: 40,
                 badge: 'destaque',
                 cor: '#1e40af',
-                checkout:'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                pagina:'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/administracao',
-                imagem:'https://raw.githubusercontent.com/Henkribeiro/Georgia/refs/heads/main/Adm.png'
+                checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
+                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/administracao',
+                imagem: 'https://raw.githubusercontent.com/Henkribeiro/Georgia/refs/heads/main/Adm.png'
             },
             {
                 id: 2,
                 titulo: 'Engenharia Civil',
                 descricao: 'Construa o futuro com sólida formação em engenharia',
                 area: 'engenharia',
-                modalidade: 'presencial',
+                modalidade: 'presencial | Semipresencial',
                 categoria: 'Engenharia e Arquitetura',
                 grau: 'Bacharel',
                 duracao: '10 semestres',
@@ -709,9 +706,9 @@
                 desconto: 35,
                 badge: 'novo',
                 cor: '#059669',
-                checkout:'',
-                pagina:'',
-                imagem:''
+                checkout: '',
+                pagina: '',
+                imagem: ''
             },
             {
                 id: 3,
@@ -727,9 +724,9 @@
                 desconto: 40,
                 badge: 'promocao',
                 cor: '#7c3aed',
-                checkout:'',
-                pagina:'',
-                imagem:''
+                checkout: '',
+                pagina: '',
+                imagem: ''
             },
             {
                 id: 4,
@@ -745,9 +742,9 @@
                 desconto: 30,
                 badge: 'destaque',
                 cor: '#dc2626',
-                checkout:'',
-                pagina:'',
-                imagem:''
+                checkout: '',
+                pagina: '',
+                imagem: ''
             },
             {
                 id: 5,
@@ -763,9 +760,9 @@
                 desconto: 30,
                 badge: 'novo',
                 cor: '#059669',
-                checkout:'',
-                pagina:'',
-                imagem:''
+                checkout: '',
+                pagina: '',
+                imagem: ''
             },
             {
                 id: 6,
@@ -781,9 +778,9 @@
                 desconto: 40,
                 badge: 'promocao',
                 cor: '#f59e0b',
-                checkout:'',
-                pagina:'',
-                imagem:''
+                checkout: '',
+                pagina: '',
+                imagem: ''
             },
             {
                 id: 7,
@@ -799,9 +796,9 @@
                 desconto: 20,
                 badge: 'destaque',
                 cor: '#dc2626',
-                checkout:'',
-                pagina:'',
-                imagem:''
+                checkout: '',
+                pagina: '',
+                imagem: ''
             },
             {
                 id: 8,
@@ -817,9 +814,9 @@
                 desconto: 30,
                 badge: 'novo',
                 cor: '#7c3aed',
-                checkout:'',
-                pagina:'',
-                imagem:''
+                checkout: '',
+                pagina: '',
+                imagem: ''
             },
             {
                 id: 9,
@@ -835,9 +832,9 @@
                 desconto: 30,
                 badge: 'destaque',
                 cor: '#1e40af',
-                checkout:'',
-                pagina:'',
-                imagem:''
+                checkout: '',
+                pagina: '',
+                imagem: ''
             },
             {
                 id: 10,
@@ -853,9 +850,9 @@
                 desconto: 30,
                 badge: 'promocao',
                 cor: '#1e40af',
-                checkout:'',
-                pagina:'',
-                imagem:''
+                checkout: '',
+                pagina: '',
+                imagem: ''
             },
             {
                 id: 11,
@@ -871,9 +868,9 @@
                 desconto: 30,
                 badge: 'novo',
                 cor: '#dc2626',
-                checkout:'',
-                pagina:'',
-                imagem:''
+                checkout: '',
+                pagina: '',
+                imagem: ''
             },
 
             {
@@ -890,10 +887,10 @@
                 desconto: 30,
                 badge: 'destaque',
                 cor: '#059669',
-                checkout:'',
-                pagina:'',
-                imagem:''
-                
+                checkout: '',
+                pagina: '',
+                imagem: ''
+
             },
 
             {
@@ -912,7 +909,7 @@
                 cor: '#059669',
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial&utm_source=graduninassau&utm_campaign=analise-e-desenvolvimento-de-sistemas',
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/administracao',
-                imagem:''
+                imagem: ''
             }
 
         ];
@@ -1044,10 +1041,18 @@
                 let visibleIndex = 0;
 
                 cards.forEach((card) => {
-                    const modalidade = card.dataset.modalidade;
+                    let modalidade = card.dataset.modalidade;
                     const area = card.dataset.area;
 
-                    const matchModalidade = filtros.modalidade === 'todos' || modalidade === filtros.modalidade;
+                    // Suporte a múltiplas modalidades separadas por "|"
+                    let modalidades = modalidade
+                        .toLowerCase()
+                        .split('|')
+                        .map(m => m.trim());
+
+                    const filtroModalidade = filtros.modalidade.toLowerCase();
+
+                    const matchModalidade = filtroModalidade === 'todos' || modalidades.includes(filtroModalidade);
                     const matchArea = filtros.area === 'todos' || area === filtros.area;
 
                     if (matchModalidade && matchArea) {
