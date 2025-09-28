@@ -1006,10 +1006,18 @@
                 let visibleIndex = 0;
 
                 cards.forEach((card) => {
-                    const modalidade = card.dataset.modalidade;
+                    let modalidade = card.dataset.modalidade;
                     const area = card.dataset.area;
 
-                    const matchModalidade = filtros.modalidade === 'todos' || modalidade === filtros.modalidade;
+                    // Suporte a múltiplas modalidades separadas por "|"
+                    let modalidades = modalidade
+                        .toLowerCase()
+                        .split('|')
+                        .map(m => m.trim());
+
+                    const filtroModalidade = filtros.modalidade.toLowerCase();
+
+                    const matchModalidade = filtroModalidade === 'todos' || modalidades.includes(filtroModalidade);
                     const matchArea = filtros.area === 'todos' || area === filtros.area;
 
                     if (matchModalidade && matchArea) {
