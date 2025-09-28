@@ -1,0 +1,2791 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio de Cursos</title>
+    <style>
+        .meu-widget {
+            font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background: #f3f4f6;
+            color: #222;
+            display: flex;
+        }
+
+        /* Sidebar fixa no desktop */
+        .meu-widget .filter-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 260px;
+            height: 100vh;
+            background: #0859B9;
+            color: #fff;
+            padding: 20px;
+            border-right: 1px solid #ddd;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .meu-widget .sideber-interno h3 {
+            margin: 0 0 12px 0;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .meu-widget .nav-links-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-size: 14px;
+        }
+
+        .meu-widget .nav-links-sidebar label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* Checkbox customizado */
+        .meu-widget .nav-links-sidebar input[type="checkbox"] {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #fff;
+            border-radius: 4px;
+            background: transparent;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .meu-widget .nav-links-sidebar input[type="checkbox"]:checked {
+            background: #fff;
+            border-color: #fff;
+        }
+
+        .meu-widget .nav-links-sidebar input[type="checkbox"]:checked::after {
+            content: "✓";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -55%);
+            font-size: 12px;
+            font-weight: bold;
+            color: #0859B9;
+        }
+
+        /* Busca */
+        .meu-widget #searchInput {
+            padding: 10px 14px 10px 36px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.15);
+            font-size: 14px;
+            color: #fff;
+            outline: none;
+            transition: all 0.2s ease;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23fff' stroke-width='2' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cline x1='16.65' y1='16.65' x2='21' y2='21'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: 10px center;
+            background-size: 16px;
+        }
+
+        .meu-widget #searchInput::placeholder {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .meu-widget #searchInput:focus {
+            border-color: #fff;
+            box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Conteúdo com margem para sidebar */
+        .meu-widget .cards-scroll-container {
+            margin-left: 260px;
+            max-height: 100vh;
+            overflow-y: auto;
+            padding: 20px;
+            flex: 1;
+            width: 100%;
+        }
+
+        .meu-widget .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            align-items: start;
+            justify-items: center;
+        }
+
+        /* Card estilo */
+        .meu-widget .card {
+            background: #fff;
+            border-radius: 6px;
+            border: 1px solid #dcdcdc;
+            box-shadow: 0 2px 6px rgba(10, 10, 10, 0.04);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-height: 320px;
+            width: 100%;
+            max-width: 340px;
+        }
+
+        .meu-widget .card-topbar {
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #fff;
+            letter-spacing: .6px;
+            text-align: right;
+        }
+
+        .meu-widget .cat-negocios {
+            background: #f4b400;
+        }
+
+        .meu-widget .cat-tecnologia {
+            background: #b803ff;
+        }
+
+        .meu-widget .cat-mais-vendidos {
+            background: #f4b400;
+        }
+
+        .meu-widget .cat-saude {
+            background: #21cbff;
+        }
+
+        .meu-widget .cat-humanas {
+            background: #028b36;
+        }
+
+        .meu-widget .cat-engenharias {
+            background: #ff1f1f;
+        }
+
+        .meu-widget .card-body {
+            padding: 14px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+        }
+
+        .meu-widget .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+            color: #111;
+            line-height: 1.18;
+        }
+
+        .meu-widget .info-list {
+            margin: 4px 0 0 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+        }
+
+        .meu-widget .info-list li {
+            font-size: 14px;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .meu-widget .info-list li::before {
+            content: "›";
+            color: #999;
+            font-weight: 700;
+            margin-right: 6px;
+        }
+
+        .meu-widget .card-footer {
+            padding: 8px 14px;
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .meu-widget .btn-curso {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 12px 14px;
+            border-radius: 6px;
+            border: 2px solid #0859B9;
+            color: #0859B9;
+            background: transparent;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: .6px;
+        }
+
+        /* Hover só no VER CURSO */
+        .meu-widget .btn-curso:first-child:hover {
+            background: #2167ff;
+            color: #fff;
+        }
+
+        /* INSCREVA-SE neon fixo */
+        .meu-widget .btn-curso:last-child {
+            border: 2px solid #1f53ff;
+            color: #fff;
+            background: #1f53ff;
+            text-shadow: 0 0 6px #1f53ff, 0 0 10px #1f53ff;
+            box-shadow: 0 0 8px #1f53ff, 0 0 16px #1f53ff;
+        }
+
+        .meu-widget .btn-curso:last-child:hover {
+            background: #1f53ff;
+            color: #fff;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #444;
+            margin-bottom: 8px;
+            justify-content: left;
+        }
+
+        .info-row svg {
+            width: 16px;
+            height: 16px;
+            stroke: #444;
+        }
+
+        .info-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pricing-section {
+            margin-top: auto;
+            padding-top: 15px;
+        }
+
+        .price-discount-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 4px;
+        }
+
+        .price-old {
+            font-size: 14px !important;
+            color: #999;
+            text-decoration: line-through;
+            margin: 0;
+        }
+
+        .discount {
+            color: #0a9b38;
+            font-size: 14px !important;
+            ;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin: 8px 0 15px 0;
+        }
+
+        .price {
+            font-size: 24px !important;
+            ;
+            font-weight: 700;
+            color: #0066cc;
+            margin: 0;
+        }
+
+        .price-subtitle {
+            font-size: 12px !important;
+            ;
+            color: #666;
+            margin: 0;
+        }
+
+        /* Responsividade */
+        @media (max-width: 1024px) {
+            .meu-widget .cards-container {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            }
+        }
+
+        @media (max-width: 760px) {
+            .meu-widget {
+                flex-direction: column;
+            }
+
+            .meu-widget .filter-sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            }
+
+            .meu-widget .cards-scroll-container {
+                margin-left: 0;
+            }
+
+            .meu-widget .cards-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="meu-widget">
+        <!-- Filtro -->
+        <div class="filter-sidebar">
+            <div class="sideber-interno">
+                <h3>Portfólio de cursos</h3>
+                <input id="searchInput" type="text" placeholder="Buscar curso..." />
+                <br><br>
+                <ul class="nav-links-sidebar">
+                    <!-- <label><input type="checkbox" value="mais-vendidos" class="checkbox">Mais vendidos</label> -->
+                    <label><input type="checkbox" value="negocios" class="checkbox">Negócios</label>
+                    <label><input type="checkbox" value="tecnologia" class="checkbox">Tecnologia</label>
+                    <label><input type="checkbox" value="saude" class="checkbox">Saúde</label>
+                    <label><input type="checkbox" value="engenharias" class="checkbox">Engenharias</label>
+                    <label><input type="checkbox" value="humanas" class="checkbox">Humanas</label>
+                    <!-- <label><input type="checkbox" value="duracao-6" class="checkbox">Cursos 6 meses</label>
+          <label><input type="checkbox" value="duracao-12" class="checkbox">Cursos 12 meses</label> -->
+                </ul>
+            </div>
+        </div>
+
+
+
+        <!-- ENGENHARIAS -->
+
+        <div class="cards-scroll-container">
+            <div class="cards-container">
+                <!-- CARD ENGENHARIA -->
+                <article class="card engenharias duracao-12">
+                    <div class="card-topbar cat-engenharias">Engenharias</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Engenharia Elétrica</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial | Semipresencial</li>
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/engenharia-eletrica">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                 <!-- CARD ENGENHARIA -->
+
+                <!-- CARD TECNOLOGIA -->
+                <article class="card tecnologia duracao-12">
+                    <div class="card-topbar cat-tecnologia">Tecnologia</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Análise e Desenvolvimento de Sistemas</h3>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial | EAD</li>
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/analise-e-desenvolvimento-de-sistemas">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                <!-- CARD TECNOLOGIA -->
+
+                <!-- CARD NEGOCIOS -->
+                <article class="card negocios duracao-12">
+                    <div class="card-topbar cat-negocios">Negócios</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Administração</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial | EAD</li>
+                           
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/administracao">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                  <!-- CARD NEGOCIOS -->
+                   
+                <!-- CARD NEGOCIOS -->
+                <article class="card negocios duracao-12">
+                    <div class="card-topbar cat-negocios">Negócios</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Publicidade e Propaganda</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial </li>
+                            
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/publicidade-e-propaganda">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                  <!-- CARD NEGOCIOS -->
+
+
+                <!-- CARD SAUDE -->
+                <article class="card saude duracao-12">
+                    <div class="card-topbar cat-saude">Saúde</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Biomedicina</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial | Semipresencial</li>
+                            
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/biomedicina">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                <!-- CARD SAUDE -->
+                   
+                <!-- CARD TECNOLOGIA -->
+                <article class="card tecnologia duracao-12">
+                    <div class="card-topbar cat-tecnologia">Tecnologia</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Ciência da Computação</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial</li>
+                          
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn-curso"
+                            href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/ciencia-da-computacao">VER
+                            CURSO</a>
+                        <a class="btn-curso"
+                            href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                    </div>
+                </article>
+                <!-- CARD TECNOLOGIA -->
+
+                <!-- CARD SAUDE -->
+                <article class="card saude duracao-12">
+                    <div class="card-topbar cat-saude">Saúde</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Fisioterapia</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial | Semipresencial</li>
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/fisioterapia">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                <!-- CARD SAUDE -->
+
+                <!-- CARD HUMANAS -->
+                <article class="card humanas duracao-12">
+                    <div class="card-topbar cat-humanas">Humanas</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Pedagogia</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial | Semipresencial</li>
+                          
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/pedagogia">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                 <!-- CARD HUMANAS -->
+
+                 <!-- CARD SAUDE -->
+                <article class="card saude duracao-12">
+                    <div class="card-topbar cat-saude">Saúde</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Nutrição</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial | Semipresencial</li>
+                          
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/nutricao">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                 <!-- CARD SAUDE -->
+
+                 <!-- CARD SAUDE -->
+                <article class="card saude duracao-12">
+                    <div class="card-topbar cat-saude">Saúde</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Farmácia</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial | Semipresencial</li>
+                           
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn-curso"
+                            href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/farmacia">VER
+                            CURSO</a>
+                        <a class="btn-curso"
+                            href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                    </div>
+                </article>
+                <!-- CARD SAUDE -->
+
+                 <!-- CARD ENGENHARIA -->
+                <article class="card engenharias duracao-12">
+                    <div class="card-topbar cat-engenharias">Engenharias</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Engenharia Mecânica</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial | Semipresencial</li>
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn-curso"
+                            href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/engenharia-mecanica">VER
+                            CURSO</a>
+                        <a class="btn-curso"
+                            href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                    </div>
+                </article>
+                 <!-- CARD ENGENHARIA -->
+
+
+                 <!-- CARD ENGENHARIA -->
+                <article class="card engenharias duracao-12">
+                    <div class="card-topbar cat-engenharias">Engenharias</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Engenharia de Produção</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial | Semipresencial</li>
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn-curso"
+                            href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/engenharia-de-producao">VER
+                            CURSO</a>
+                        <a class="btn-curso"
+                            href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                    </div>
+                </article>
+                 <!-- CARD ENGENHARIA -->
+
+                <!-- CARD ENGENHARIA -->
+                <article class="card engenharias duracao-12">
+                    <div class="card-topbar cat-engenharias">Engenharias</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Engenharia Civil</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial | Semipresencial</li>
+                          
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn-curso"
+                            href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/engenharia-civil">VER
+                            CURSO</a>
+                        <a class="btn-curso"
+                            href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                    </div>
+                </article>
+                <!-- CARD ENGENHARIA -->
+
+                
+                <!-- HUMANAS -->
+                <article class="card humanas duracao-12">
+                    <div class="card-topbar cat-humanas">Humanas</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Arquitetura e Urbanismo</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial | Semipresencial</li>
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn-curso"
+                            href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/arquitetura-e-urbanismo">VER
+                            CURSO</a>
+                        <a class="btn-curso"
+                            href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                    </div>
+                </article>
+                <!-- HUMANAS -->
+
+                  <!-- HUMANAS -->
+                <article class="card humanas duracao-12">
+                    <div class="card-topbar cat-humanas">Humanas</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Psicologia</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial </li>
+                            
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn-curso"
+                            href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/psicologia">VER
+                            CURSO</a>
+                        <a class="btn-curso"
+                            href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                    </div>
+                </article>
+                  <!-- HUMANAS -->
+
+                <!-- HUMANAS -->
+                <article class="card humanas duracao-12">
+                    <div class="card-topbar cat-humanas">Humanas</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Relações Internacionais</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial </li>
+                            <li>Mentoria Especialista</li>
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Semipresencial</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn-curso"
+                            href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/relacoes-internacionais">VER
+                            CURSO</a>
+                        <a class="btn-curso"
+                            href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                    </div>
+                </article>
+                 <!-- HUMANAS -->
+
+                <!-- TECNOLOGIA -->
+                <article class="card tecnologia duracao-12">
+                    <div class="card-topbar cat-tecnologia">Tecnologia</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Gestão da Tecnologia da Informação</h3>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial | EAD</li>
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn-curso"
+                            href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/gestao-da-tecnologia-da-informacao">VER
+                            CURSO</a>
+                        <a class="btn-curso"
+                            href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                    </div>
+                </article>
+                <!-- TECNOLOGIA -->
+
+                <!-- TECNOLOGIA -->
+                <article class="card tecnologia duracao-12">
+                    <div class="card-topbar cat-tecnologia">Tecnologia</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Data Science</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial | EAD</li>
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn-curso"
+                            href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/data-science">VER
+                            CURSO</a>
+                        <a class="btn-curso"
+                            href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                    </div>
+                </article>
+                <!-- TECNOLOGIA -->
+
+
+                <!-- NEGÓCIOS -->
+                <article class="card negocios duracao-12">
+                    <div class="card-topbar cat-negocios">Negócios</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Gestão de Recursos Humanos</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial | EAD</li>
+                            <li>Mentoria Especialista</li>
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn-curso"
+                            href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/gestao-de-recursos-humanos">VER
+                            CURSO</a>
+                        <a class="btn-curso"
+                            href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                    </div>
+                </article>
+                <!-- NEGÓCIOS -->
+
+                <!-- NEGÓCIOS -->
+                <article class="card negocios duracao-12">
+                    <div class="card-topbar cat-negocios">Negócios</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Logística</h3>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial | EAD</li>
+                            <li>Mentoria Especialista</li>
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Semipresencial</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn-curso"
+                            href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/logistica">VER
+                            CURSO</a>
+                        <a class="btn-curso"
+                            href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                    </div>
+                </article>
+                <!-- NEGÓCIOS -->
+
+                 <!-- CARD NEGOCIOS -->
+                <article class="card negocios duracao-12">
+                    <div class="card-topbar cat-negocios">Negócios</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Ciências Aeronáuticas</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial | EAD</li>
+                           
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/ciencias-aeronauticas">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                  <!-- CARD NEGOCIOS -->
+
+                  <!-- CARD NEGOCIOS -->
+                <article class="card negocios duracao-12">
+                    <div class="card-topbar cat-negocios">Negócios</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Ciências Contábeis</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial | EAD </li>
+                           
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/ciencias-contabeis">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                  <!-- CARD NEGOCIOS -->
+
+                   <!-- CARD NEGOCIOS -->
+                <article class="card negocios duracao-12">
+                    <div class="card-topbar cat-negocios">Negócios</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Coach Digital</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial </li>
+                           
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/coach-digital">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                  <!-- CARD NEGOCIOS -->
+
+                   <!-- CARD NEGOCIOS -->
+                <article class="card negocios duracao-12">
+                    <div class="card-topbar cat-negocios">Negócios</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Coach Mentoring</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial | </li>
+                           
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/coach-mentoring">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                  <!-- CARD NEGOCIOS -->
+
+                  <!-- CARD HUMANAS -->
+                <article class="card humanas duracao-12">
+                    <div class="card-topbar cat-humanas">Humanas</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Pedagogia</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial </li>
+                          
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/direito">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                 <!-- CARD HUMANAS -->
+
+                  <!-- CARD HUMANAS -->
+                <article class="card humanas duracao-12">
+                    <div class="card-topbar cat-humanas">Humanas</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Educação Física - Bacharelado</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial | Semipresencial</li>
+                          
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/educacao-fisica-bacharelado">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                 <!-- CARD HUMANAS -->
+
+                 <!-- CARD SAUDE -->
+                <article class="card saude duracao-12">
+                    <div class="card-topbar cat-saude">Saúde</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Enfermagem</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial </li>
+                            
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/enfermagem">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                <!-- CARD SAUDE -->
+
+                 <!-- CARD ENGENHARIA -->
+                <article class="card engenharias duracao-12">
+                    <div class="card-topbar cat-engenharias">Engenharias</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Engenharia da Computação</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial </li>
+                          
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn-curso"
+                            href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/engenharia-da-computacao">VER
+                            CURSO</a>
+                        <a class="btn-curso"
+                            href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                    </div>
+                </article>
+                <!-- CARD ENGENHARIA -->
+
+                <!-- CARD SAUDE -->
+                <article class="card saude duracao-12">
+                    <div class="card-topbar cat-saude">Saúde</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Estética e Cosmética</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial | Semipresencial</li>
+                            
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/estetica-e-cosmetica">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                <!-- CARD SAUDE -->
+
+                 <!-- CARD HUMANAS -->
+                <article class="card humanas duracao-12">
+                    <div class="card-topbar cat-humanas">Humanas</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Gastronomia</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial | EAD </li>
+                          
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/gastronomia">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                 <!-- CARD HUMANAS -->
+
+                <!-- CARD HUMANAS -->
+                <article class="card humanas duracao-12">
+                    <div class="card-topbar cat-humanas">Humanas</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Jornalismo </h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial </li>
+                          
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/jornalismo">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                 <!-- CARD HUMANAS -->
+
+                 <!-- CARD SAUDE -->
+                <article class="card saude duracao-12">
+                    <div class="card-topbar cat-saude">Saúde</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Medicina Veterinária </h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial </li>
+                            
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/medicina-veterinaria">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                <!-- CARD SAUDE -->
+
+                 <!-- CARD SAUDE -->
+                <article class="card saude duracao-12">
+                    <div class="card-topbar cat-saude">Saúde</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Odontologia</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial </li>
+                            
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/odontologia">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                <!-- CARD SAUDE -->
+
+                <!-- CARD HUMANAS -->
+                <article class="card humanas duracao-12">
+                    <div class="card-topbar cat-humanas">Humanas</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Serviço Social </h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial | Semipresencial </li>
+                          
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/servico-social">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                 <!-- CARD HUMANAS -->
+
+                 <!-- TECNOLOGIA -->
+                <article class="card tecnologia duracao-12">
+                    <div class="card-topbar cat-tecnologia">Tecnologia</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Sistema de Informação</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial </li>
+                        
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn-curso"
+                            href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/sistemas-de-informacao">VER
+                            CURSO</a>
+                        <a class="btn-curso"
+                            href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                    </div>
+                </article>
+                <!-- TECNOLOGIA -->
+
+                  <!-- CARD SAUDE -->
+                <article class="card saude duracao-12">
+                    <div class="card-topbar cat-saude">Saúde</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Terapia Ocupacional</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Presencial </li>
+                            
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/terapia-ocupacional">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                <!-- CARD SAUDE -->
+
+                 <!-- CARD SAUDE -->
+                <article class="card saude duracao-12">
+                    <div class="card-topbar cat-saude">Saúde</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Ciências Biológicas</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Semipresencial</li>
+                            
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/semipresencial/ciencias-biologicas">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                <!-- CARD SAUDE -->
+
+                 <!-- CARD HUMANAS -->
+                <article class="card humanas duracao-12">
+                    <div class="card-topbar cat-humanas">Humanas</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Educação Especial </h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Semipresencial </li>
+                          
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/semipresencial/educacao-especial">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                 <!-- CARD HUMANAS -->
+
+                <!-- CARD HUMANAS -->
+                <article class="card humanas duracao-12">
+                    <div class="card-topbar cat-humanas">Humanas</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Educação Física - Licenciatura </h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Semipresencial </li>
+                          
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/semipresencial/educacao-fisica-licenciatura">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                 <!-- CARD HUMANAS -->
+
+                <!-- CARD ENGENHARIA -->
+                <article class="card engenharias duracao-12">
+                    <div class="card-topbar cat-engenharias">Engenharias</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Engenharia Produção</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Semipresencial</li>
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/semipresencial/engenharia-de-producao">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                 <!-- CARD ENGENHARIA -->
+
+                 <!-- CARD HUMANAS -->
+                <article class="card humanas duracao-12">
+                    <div class="card-topbar cat-humanas">Humanas</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Geografia </h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Semipresencial </li>
+                          
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/semipresencial/geografia">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                 <!-- CARD HUMANAS -->
+
+                   <!-- CARD NEGOCIOS -->
+                <article class="card negocios duracao-12">
+                    <div class="card-topbar cat-negocios">Negócios</div>
+                    <div class="card-body">
+                        <h3 class="card-title">Gestão Hospitalar</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Semipresencial</li>
+                           
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/semipresencial/gestao-hospitalar">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                  <!-- CARD NEGOCIOS -->
+
+                  <!-- CARD HUMANAS -->
+                <article class="card humanas duracao-12">
+                    <div class="card-topbar cat-humanas">Humanas</div>
+                    <div class="card-body">
+                        <h3 class="card-title">História </h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Semipresencial </li>
+                          
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/semipresencial/historia">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                 <!-- CARD HUMANAS -->
+
+                 <!-- CARD HUMANAS -->
+                <article class="card humanas duracao-12">
+                    <div class="card-topbar cat-humanas">Humanas</div>
+                    <div class="card-body">
+                        <h3 class="card-title"> Letras - Espanhol</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Semipresencial </li>
+                          
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/semipresencial/letras-espanhol">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                 <!-- CARD HUMANAS -->
+
+                  <!-- CARD HUMANAS -->
+                <article class="card humanas duracao-12">
+                    <div class="card-topbar cat-humanas">Humanas</div>
+                    <div class="card-body">
+                        <h3 class="card-title"> Letras - Inglês</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Semipresencial </li>
+                          
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/semipresencial/letras-ingles">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                 <!-- CARD HUMANAS -->
+
+                 <!-- CARD HUMANAS -->
+                <article class="card humanas duracao-12">
+                    <div class="card-topbar cat-humanas">Humanas</div>
+                    <div class="card-body">
+                        <h3 class="card-title"> Letras - Português</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Semipresencial </li>
+                          
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/semipresencial/letras-portugues">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                 <!-- CARD HUMANAS -->
+
+                  <!-- CARD HUMANAS -->
+                <article class="card humanas duracao-12">
+                    <div class="card-topbar cat-humanas">Humanas</div>
+                    <div class="card-body">
+                        <h3 class="card-title"> Matemática - Licenciatura</h3>
+                        <br>
+                        <ul class="info-list">
+                            <li>Graduação: Semipresencial </li>
+                          
+                        </ul>
+                        <div class="info-row">
+                            <div class="info-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>8 semestres</span>
+                            </div>
+                            <div class="info-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>Mentoria Especialista</span>
+                            </div>
+
+                        </div>
+                        <div class="pricing-section">
+                            <div class="price-discount-row">
+                                <p class="price-old">R$ 850,00</p>
+                                <p class="discount">-84% de desconto</p>
+                            </div>
+                            <div class="price-row">
+                                <p class="price">R$ 129,00</p>
+                                <p class="price-subtitle">nas 3 primeiras parcelas</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn-curso"
+                                href="https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/semipresencial/matematica-licenciatura">VER
+                                CURSO</a>
+                            <a class="btn-curso"
+                                href="https://gex.goexplosion.com/link/checkout?utm=graduacao-uninassau-georgia">INSCREVA-SE</a>
+                        </div>
+                </article>
+                 <!-- CARD HUMANAS -->
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.querySelector('.meu-widget');
+            const checkboxes = container.querySelectorAll('.checkbox');
+            const cards = container.querySelectorAll('.card');
+            const searchInput = container.querySelector('#searchInput');
+
+            function filterCards() {
+                const active = Array.from(checkboxes).filter(c => c.checked).map(c => c.value);
+                const q = (searchInput.value || '').trim().toLowerCase();
+
+                cards.forEach(card => {
+                    const passFilter = active.length === 0 || active.some(f => card.classList.contains(f));
+                    const title = (card.querySelector('.card-title')?.textContent || '').toLowerCase();
+                    const infos = Array.from(card.querySelectorAll('.info-list li')).map(li => li.textContent.toLowerCase()).join(' ');
+                    const passSearch = q === '' || title.includes(q) || infos.includes(q);
+                    card.style.display = (passFilter && passSearch) ? 'flex' : 'none';
+                });
+            }
+
+            checkboxes.forEach(cb => cb.addEventListener('change', filterCards));
+            searchInput.addEventListener('input', filterCards);
+        });
+    </script>
+</body>
+
+</html>
