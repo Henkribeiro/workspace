@@ -506,6 +506,12 @@
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
+
+            .course-card {
+                max-width: 100%;
+                margin: 0;
+            }
+
             .header h1 {
                 font-size: 2rem;
             }
@@ -530,6 +536,11 @@
         }
 
         /* LOADING ANIMATION */
+
+        .course-card {
+            animation: slideInUp 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+
         .loading {
             display: none;
             text-align: center;
@@ -551,14 +562,17 @@
             margin: 0 auto 20px;
         }
 
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
             }
 
-            100% {
-                transform: rotate(360deg);
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
+
         }
     </style>
 </head>
@@ -616,6 +630,47 @@
     </div>
 
     <script>
+
+        // Adiciona interatividade extra
+        document.addEventListener('DOMContentLoaded', function () {
+            const card = document.querySelector('.course-card');
+            const badge = document.querySelector('.badge');
+
+            // Efeito parallax sutil no mouse
+            card.addEventListener('mousemove', function (e) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const deltaX = (x - centerX) / centerX;
+                const deltaY = (y - centerY) / centerY;
+
+                card.style.transform = `translateY(-12px) rotateX(${deltaY * 2}deg) rotateY(${deltaX * 2}deg)`;
+            });
+
+            card.addEventListener('mouseleave', function () {
+                card.style.transform = '';
+            });
+
+            // Animação do badge ao clicar
+            badge.addEventListener('click', function (e) {
+                e.preventDefault();
+                badge.style.animation = 'none';
+                setTimeout(() => {
+                    badge.style.animation = 'pulse 2s infinite';
+                }, 10);
+            });
+
+            // Smooth scroll para inscrição
+            document.querySelector('a[href="#inscricao"]').addEventListener('click', function (e) {
+                e.preventDefault();
+                alert('Redirecionando para o formulário de inscrição...');
+            });
+        });
+
         // Dados dos cursos
         const cursosData = [
             {
@@ -783,6 +838,7 @@
                 badge: 'novo',
                 cor: '#dc2626'
             },
+
             {
                 id: 12,
                 titulo: 'Engenharia Elétrica',
@@ -797,7 +853,26 @@
                 desconto: 30,
                 badge: 'destaque',
                 cor: '#059669'
+            },
+
+            {
+                id: 13,
+                titulo: 'Jogador de Futebol',
+                descricao: 'Energia, automação e inovação tecnológica',
+                area: 'engenharia',
+                modalidade: 'semipresencial',
+                categoria: 'Engenharia e Arquitetura',
+                grau: 'Bacharel',
+                duracao: '10 semestres',
+                precoOriginal: 1100,
+                precoAtual: 770,
+                desconto: 30,
+                badge: 'destaque',
+                cor: '#059669',
+                checkout:'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial&utm_source=graduninassau&utm_campaign=analise-e-desenvolvimento-de-sistemas',
+                pagina:'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/administracao'
             }
+
         ];
 
         // Estado dos filtros
@@ -852,21 +927,22 @@
                         <p class="course-description">${curso.descricao}</p>
                         
                         <div class="course-details">
-    <div class="detail-item">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <circle cx="12" cy="12" r="10"/>
-            <polyline points="12 6 12 12 16 14"/>
-        </svg>
-        <span>${curso.modalidade.charAt(0).toUpperCase() + curso.modalidade.slice(1)}</span>
-    </div>
-    <div class="detail-item">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <rect width="20" height="14" x="2" y="3" rx="2"/>
-            <circle cx="8" cy="10" r="2"/>
-            <path d="m14 6 2 2-2 2"/>
-        </svg>
-        <span>${curso.duracao}</span>
-    </div>
+                            <div class="detail-item">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                                <span>${curso.modalidade.charAt(0).toUpperCase() + curso.modalidade.slice(1)}</span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <rect width="20" height="14" x="2" y="3" rx="2"/>
+                                <circle cx="8" cy="10" r="2"/>
+                                <path d="m14 6 2 2-2 2"/>
+                            </svg>
+                            <span>${curso.duracao}</span>
+                        </div>
 </div>
 
                         <div class="pricing">
@@ -880,8 +956,8 @@
                         </div>
 
                         <div class="actions">
-                            <a href="#inscricao" class="btn btn-primary">Inscreva-se</a>
-                            <a href="/curso/${curso.titulo.toLowerCase().replace(/\s+/g, '-')}" class="btn btn-secondary">
+                            <a href=${curso.checkout} class="btn btn-primary">Inscreva-se</a>
+                            <a href=${curso.pagina} class="btn btn-secondary">
                                 <span>Saiba mais</span>
                                 <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                     <path d="M5 12h14"/>
