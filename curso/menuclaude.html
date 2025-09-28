@@ -170,7 +170,7 @@
             margin-bottom: 40px;
         }
 
-        /* CARD STYLES (mantendo o design original) */
+        /* CARD STYLES */
         .course-card {
             position: relative;
             background: white;
@@ -800,6 +800,9 @@
             area: 'todos'
         };
 
+        // Mapa para guardar timeouts de esconder cards (por card)
+        const hideTimeouts = new WeakMap();
+
         // Função para gerar SVG da imagem
         function gerarImagemCurso(curso) {
             const cores = {
@@ -827,6 +830,7 @@
                             <span>${curso.badge === 'destaque' ? 'Destaque' : curso.badge === 'novo' ? 'Novo' : 'Promoção'}</span>
                         </div>
                     </div>
+                    
 
                     <div class="course-image">
                         <img src="${gerarImagemCurso(curso)}" alt="Curso de ${curso.titulo}">
@@ -842,22 +846,22 @@
                         <p class="course-description">${curso.descricao}</p>
                         
                         <div class="course-details">
-                            <div class="detail-item">
-                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <polyline points="12 6 12 12 16 14"/>
-                                </svg>
-                                <span>${curso.duracao}</span>
-                            </div>
-                            <div class="detail-item">
-                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                    ${curso.modalidade === 'presencial' ?
-                    '<rect width="20" height="14" x="2" y="3" rx="2"/><circle cx="8" cy="10" r="2"/><path d="m14 6 2 2-2 2"/>'
-                                    }
-                                </svg>
-                                <span>${curso.modalidade.charAt(0).toUpperCase() + curso.modalidade.slice(1)}</span>
-                            </div>
-                        </div>
+    <div class="detail-item">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <span>${curso.modalidade.charAt(0).toUpperCase() + curso.modalidade.slice(1)}</span>
+    </div>
+    <div class="detail-item">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect width="20" height="14" x="2" y="3" rx="2"/>
+            <circle cx="8" cy="10" r="2"/>
+            <path d="m14 6 2 2-2 2"/>
+        </svg>
+        <span>${curso.duracao}</span>
+    </div>
+</div>
 
                         <div class="pricing">
                             <div class="price-old">
@@ -904,7 +908,6 @@
             let visibleCount = 0;
 
             if (!instantaneo) {
-                // Mostrar loading apenas quando não for instantâneo
                 const loading = document.querySelector('.loading');
                 const noResults = document.getElementById('no-results');
                 loading.classList.add('show');
@@ -924,10 +927,14 @@
                     const matchArea = filtros.area === 'todos' || area === filtros.area;
 
                     if (matchModalidade && matchArea) {
+                        // Se havia timeout agendado para esse card, cancela
+                        if (hideTimeouts.has(card)) {
+                            clearTimeout(hideTimeouts.get(card));
+                            hideTimeouts.delete(card);
+                        }
                         card.classList.remove('filtering-out', 'hidden');
 
                         if (!instantaneo) {
-                            // Animação staggered para cards visíveis
                             card.style.animationDelay = (visibleIndex * 100) + 'ms';
                             card.style.animation = 'none';
                             setTimeout(() => {
@@ -940,9 +947,18 @@
                     } else {
                         if (!instantaneo) {
                             card.classList.add('filtering-out');
-                            setTimeout(() => {
-                                card.classList.add('hidden');
+                            // Se havia timeout anterior, cancela antes de criar outro
+                            if (hideTimeouts.has(card)) {
+                                clearTimeout(hideTimeouts.get(card));
+                                hideTimeouts.delete(card);
+                            }
+                            const t = setTimeout(() => {
+                                if (card.classList.contains('filtering-out')) {
+                                    card.classList.add('hidden');
+                                }
+                                hideTimeouts.delete(card);
                             }, 400);
+                            hideTimeouts.set(card, t);
                         } else {
                             card.classList.add('hidden');
                         }
@@ -950,7 +966,6 @@
                 });
 
                 if (!instantaneo) {
-                    // Esconder loading e mostrar resultado
                     const loading = document.querySelector('.loading');
                     const noResults = document.getElementById('no-results');
                     loading.classList.remove('show');
