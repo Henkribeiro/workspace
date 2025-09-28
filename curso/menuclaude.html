@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #f8fafc 0%, #f8fafc 100%);
             min-height: 100vh;
             padding: 20px 0;
         }
@@ -179,13 +179,13 @@
             border-radius: 16px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
             cursor: pointer;
             margin-right: 20px;
         }
 
         .course-card:hover {
-            transform: translateY(-12px);
+            transform: translateY(-12px) !important;
             box-shadow: 0 35px 70px rgba(0, 0, 0, 0.25);
         }
 
@@ -202,7 +202,7 @@
         }
 
         .course-card.filtering-out {
-            animation: fadeOutDown 0.4s ease forwards;
+            animation: fadeOutDown 0.8s ease forwards;
         }
 
         @keyframes fadeOutDown {
@@ -218,11 +218,6 @@
         }
 
         .course-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.25);
-        }
-
-        .courses-grid: hover {
             transform: translateY(-12px);
             box-shadow: 0 35px 70px rgba(0, 0, 0, 0.25);
         }
@@ -304,7 +299,7 @@
         .course-card:hover .image-overlay {
             background: rgba(0, 0, 0, 0.1);
         }
-        
+
         .courses-grid:hover .image-overlay {
             background: rgba(0, 0, 0, 0.1);
         }
@@ -878,8 +873,8 @@
                 desconto: 30,
                 badge: 'destaque',
                 cor: '#059669',
-                checkout:'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial&utm_source=graduninassau&utm_campaign=analise-e-desenvolvimento-de-sistemas',
-                pagina:'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/administracao'
+                checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial&utm_source=graduninassau&utm_campaign=analise-e-desenvolvimento-de-sistemas',
+                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/administracao'
             }
 
         ];
@@ -1127,6 +1122,12 @@
 
             // Cards hover effect
             document.querySelectorAll('.course-card').forEach(card => {
+                // Ao entrar no card, aplica o efeito de subir
+                card.addEventListener('mouseenter', function () {
+                    card.style.transform = 'translateY(-12px)';
+                });
+
+                // Ao mover o mouse, aplica o parallax
                 card.addEventListener('mousemove', function (e) {
                     const rect = card.getBoundingClientRect();
                     const x = e.clientX - rect.left;
@@ -1141,6 +1142,7 @@
                     card.style.transform = `translateY(-12px) rotateX(${deltaY * 2}deg) rotateY(${deltaX * 2}deg)`;
                 });
 
+                // Ao sair do card, remove o transform inline para o CSS assumir
                 card.addEventListener('mouseleave', function () {
                     card.style.transform = '';
                 });
