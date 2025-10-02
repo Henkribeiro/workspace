@@ -193,7 +193,7 @@
 
         .course-card:hover {
             transform: translateY(-12px) !important;
-            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.25) !important;
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.25);
         }
 
         @keyframes fadeInUp {
@@ -617,16 +617,6 @@
                 </div>
             </div>
 
-            <div class="filter-section">
-                <label class="filter-label">Categoria</label>
-                <div class="filter-options">
-                    <div class="filter-option active" data-filter="grau" data-value="todos">Todos</div>
-                    <div class="filter-option" data-filter="grau" data-value="Bacharel">Bacharel</div>
-                    <div class="filter-option" data-filter="grau" data-value="Licenciatura">Licenciatura</div>
-                    <div class="filter-option" data-filter="grau" data-value="CST">Tecnólogo</div>
-                </div>
-            </div>
-
             <button class="clear-filters" onclick="clearAllFilters()">Limpar Filtros</button>
         </div>
 
@@ -693,9 +683,7 @@
 
         // Dados dos cursos
         const cursosData = [
-            
-            
-            { // Começo do Card 1 - Administração
+            {
                 id: 1,
                 titulo: 'Administração',
                 descricao: 'Forme-se em uma das áreas mais versáteis do mercado',
@@ -704,21 +692,17 @@
                 categoria: 'Gestão e Negócios',
                 grau: 'Bacharel',
                 duracao: '8 semestres',
-                precoOriginal: 850, //Preço Fictício
-                precoAtual: 425, // Preço Real
-                desconto: 40, //Percentual de Desconto
+                precoOriginal: 850,
+                precoAtual: 425,
+                desconto: 40,
                 badge: 'destaque',
                 cor: '#1e40af',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/administracao',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/Georgia/refs/heads/main/Adm.png'
-            }, // fim do card 1
-           
+            },
             
-            {// Começo do Card 2 - Engenharia Civil
+            {
                 id: 2,
                 titulo: 'Engenharia Civil',
                 descricao: 'Planeje e construa estruturas que transformam cidades',
@@ -727,42 +711,35 @@
                 categoria: 'Engenharia e Arquitetura',
                 grau: 'Bacharel',
                 duracao: '10 semestres',
-                precoOriginal: 1200, //Preço Fictício
-                precoAtual: 780, // Preço Real
-                desconto: 35, //Percentual de Desconto
+                precoOriginal: 1200,
+                precoAtual: 780,
+                desconto: 35,
                 badge: 'novo',
                 cor: '#059669',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/engenharia-civil',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/Georgia/refs/heads/main/2147710985.jpg'
-            },// fim do card 2
-
-            { // Começo do Card 3 - Análise e Desenvolvimento de Sistemas
+            },
+            {
                 id: 3,
                 titulo: 'Análise e Desenvolvimento de Sistemas',
                 descricao: 'Desenvolva soluções digitais que transformam o futuro',
                 area: 'tecnologia',
                 modalidade: 'Presencial | EAD',
                 categoria: 'Tecnologia da Informação',
-                grau: 'CST',
+                grau: 'Tecnólogo',
                 duracao: '4 semestres',
-                precoOriginal: 650, //Preço Fictício
-                precoAtual: 390, // Preço Real
-                desconto: 40, //Percentual de Desconto
+                precoOriginal: 650,
+                precoAtual: 390,
+                desconto: 40,
                 badge: 'promocao',
                 cor: '#7c3aed',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/analise-e-desenvolvimento-de-sistemas',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/Georgia/refs/heads/main/ADS.png'
-            }, // fim do card 3
+            },
 
-            { // Começo do Card 4 - Enfermagem
+            {
                 id: 4,
                 titulo: 'Enfermagem',
                 descricao: 'Cuide da vida com conhecimento e dedicação',
@@ -771,20 +748,17 @@
                 categoria: 'Ciências da Saúde',
                 grau: 'Bacharel',
                 duracao: '10 semestres',
-                precoOriginal: 950, //Preço Fictício
-                precoAtual: 665, // Preço Real
-                desconto: 30, //Percentual de Desconto
+                precoOriginal: 950,
+                precoAtual: 665,
+                desconto: 30,
                 badge: 'destaque',
                 cor: '#dc2626',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/enfermagem',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/2148880504.jpg'
-            }, // fim do card 4
+            },
 
-            { // Começo do Card 5 - Psicologia
+            {
                 id: 5,
                 titulo: 'Psicologia',
                 descricao: 'Entenda o comportamento humano e promova bem-estar',
@@ -793,42 +767,36 @@
                 categoria: 'Ciências Humanas',
                 grau: 'Bacharel',
                 duracao: '10 semestres',
-                precoOriginal: 800, //Preço Fictício
-                precoAtual: 560, // Preço Real
-                desconto: 30, //Percentual de Desconto
+                precoOriginal: 800,
+                precoAtual: 560,
+                desconto: 30,
                 badge: 'novo',
                 cor: '#059669',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/psicologia',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/2150161913.jpg'
-            }, // fim do card 5
+            },
 
-            { // Começo do Card 6 - Marketing
+            {
                 id: 6,
                 titulo: 'Marketing',
                 descricao: 'Conecte marcas e pessoas de maneira estratégica',
                 area: 'negocios',
                 modalidade: 'EAD',
                 categoria: 'Marketing e Comunicação',
-                grau: 'CST',
+                grau: 'Tecnólogo',
                 duracao: '4 semestres',
-                precoOriginal: 550, //Preço Fictício
-                precoAtual: 330, // Preço Real
-                desconto: 40,  //Percentual de Desconto
+                precoOriginal: 550,
+                precoAtual: 330,
+                desconto: 40,
                 badge: 'promocao',
                 cor: '#f59e0b',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/ead/marketing',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/2150063134.jpg'
-            }, // fim do card 6
+            },
             
-            { // Começo do Card 7 - Medicina Veterinária
+            {
                 id: 7,
                 titulo: 'Medicina Veterinária',
                 descricao: 'Cuide da saúde e bem-estar animal',
@@ -837,20 +805,17 @@
                 categoria: 'Ciências da Saúde',
                 grau: 'Bacharel',
                 duracao: '10 semestres',
-                precoOriginal: 2500,  //Preço Fictício
-                precoAtual: 2000, // Preço Real
-                desconto: 20, //Percentual de Desconto
+                precoOriginal: 2500,
+                precoAtual: 2000,
+                desconto: 20,
                 badge: 'destaque',
                 cor: '#dc2626',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/medicina-veterinaria',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/2148728396.jpg'
-            }, // fim do card 7
+            },
             
-            { // Começo do Card 8 - Engenharia da Computação
+            {
                 id: 8,
                 titulo: 'Engenharia da Computação',
                 descricao: 'Integre hardware e software em soluções tecnológicas',
@@ -859,20 +824,17 @@
                 categoria: 'Engenharia e Tecnologia',
                 grau: 'Bacharel',
                 duracao: '8 semestres',
-                precoOriginal: 980, //Preço Fictício
-                precoAtual: 686, // Preço Real
-                desconto: 30, //Percentual de Desconto
+                precoOriginal: 980,
+                precoAtual: 686,
+                desconto: 30,
                 badge: 'novo',
                 cor: '#7c3aed',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/engenharia-da-computacao',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/119133.jpg'
-            }, // fim do card 8
+            },
             
-            { // Começo do Card 9 - Direito
+            {
                 id: 9,
                 titulo: 'Direito',
                 descricao: 'Atue em diversas áreas jurídicas e sociais',
@@ -881,42 +843,36 @@
                 categoria: 'Ciências Sociais Aplicadas',
                 grau: 'Bacharel',
                 duracao: '10 semestres',
-                precoOriginal: 890, //Preço Fictício
-                precoAtual: 623, // Preço Real
-                desconto: 30, //Percentual de Desconto
+                precoOriginal: 890,
+                precoAtual: 623,
+                desconto: 30,
                 badge: 'destaque',
                 cor: '#1e40af',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/direito',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/2151228163.jpg'
-            }, // fim do card 9
+            },
             
-            { // Começo do Card 10 - Gestão de Recursos Humanos
+            {
                 id: 10,
                 titulo: 'Gestão de Recursos Humanos',
                 descricao: 'Desenvolva talentos e equipes de alta performance',
                 area: 'negocios',
                 modalidade: 'EAD',
                 categoria: 'Gestão e Negócios',
-                grau: 'CST',
-                duracao: '4 semestres',
-                precoOriginal: 480, //Preço Fictício
-                precoAtual: 336, // Preço Real
-                desconto: 30, //Percentual de Desconto
+                grau: 'Tecnólogo',
+                duracao: '3 semestres',
+                precoOriginal: 480,
+                precoAtual: 336,
+                desconto: 30,
                 badge: 'promocao',
                 cor: '#1e40af',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/ead/gestao-de-recursos-humanos',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/2149136850.jpg'
-            }, // fim do card 10
+            },
 
-            { // Começo do Card 11 - Fisioterapia
+            {
                 id: 11,
                 titulo: 'Fisioterapia',
                 descricao: 'Restaure movimentos e qualidade de vida das pessoas',
@@ -925,20 +881,17 @@
                 categoria: 'Ciências da Saúde',
                 grau: 'Bacharel',
                 duracao: '8 semestres',
-                precoOriginal: 850, //Preço Fictício
-                precoAtual: 595, // Preço Real
-                desconto: 30, //Percentual de Desconto
+                precoOriginal: 850,
+                precoAtual: 595,
+                desconto: 30,
                 badge: 'novo',
                 cor: '#dc2626',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/fisioterapia',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/2149115564.jpg'
-            }, // fim do card 11
+            },
 
-            { // Começo do Card 12 - Engenharia Elétrica
+            {
                 id: 12,
                 titulo: 'Engenharia Elétrica',
                 descricao: 'Desenvolva soluções elétricas para o mundo moderno',
@@ -947,20 +900,17 @@
                 categoria: 'Engenharia e Arquitetura',
                 grau: 'Bacharel',
                 duracao: '8 semestres',
-                precoOriginal: 1100, //Preço Fictício
-                precoAtual: 770, // Preço Real
-                desconto: 30, //Percentual de Desconto
+                precoOriginal: 1100,
+                precoAtual: 770,
+                desconto: 30,
                 badge: 'destaque',
                 cor: '#059669',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/engenharia-eletrica',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/19111.jpg'
-            }, // fim do card 12
+            },
 
-            { // Começo do Card 13 - Engenharia da Produção
+            {
                 id: 13,
                 titulo: 'Engenharia da Produção',
                 descricao: 'Otimize processos e melhore resultados em empresas',
@@ -969,20 +919,17 @@
                 categoria: 'Engenharia e Arquitetura',
                 grau: 'Bacharel',
                 duracao: '8 semestres',
-                precoOriginal: 1100, //Preço Fictício
-                precoAtual: 770, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 1100,
+                precoAtual: 770,
+                desconto: 30,
                 badge: 'destaque',
                 cor: '#059669',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/semipresencial/engenharia-de-producao',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/2151589564.jpg'
-            }, // fim do card 13
+            },
 
-             { // Começo do Card 14 - Arquitetura e Urbanismo
+             {
                 id: 14,
                 titulo: 'Arquitetura e Urbanismo',
                 descricao: 'Crie espaços que conectam pessoas e cidades',
@@ -991,20 +938,17 @@
                 categoria: 'Ciências Sociais Aplicadas',
                 grau: 'Bacharel',
                 duracao: '8 semestres',
-                precoOriginal: 890, //Preço Fictício
-                precoAtual: 623, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 890,
+                precoAtual: 623,
+                desconto: 30,
                 badge: 'destaque',
                 cor: '#1e40af',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/arquitetura-e-urbanismo',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/21692.jpg'
-            }, // fim do card 14
+            },
 
-            { // Começo do Card 15 - Ciências Econômicas
+            {
                 id: 15,
                 titulo: 'Ciências Econômicas',
                 descricao: 'Entenda os mecanismos que movem a economia e a sociedade',
@@ -1013,20 +957,17 @@
                 categoria: 'Gestão e Negócios',
                 grau: 'Bacharel',
                 duracao: '6 semestres',
-                precoOriginal: 480,//Preço Fictício
-                precoAtual: 336, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 480,
+                precoAtual: 336,
+                desconto: 30,
                 badge: 'promocao',
                 cor: '#1e40af',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/ead/ciencias-economicas',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/2148975280.jpg'
-            }, // fim do card 15
+            },
 
-            { // Começo do Card 16 - Biomedicina
+            {
                 id: 16,
                 titulo: 'Biomedicina',
                 descricao: 'Explore a ciência a serviço da saúde e da vida',
@@ -1035,20 +976,17 @@
                 categoria: 'Ciências da Saúde',
                 grau: 'Bacharel',
                 duracao: '7 semestres',
-                precoOriginal: 950, //Preço Fictício
-                precoAtual: 665, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 950,
+                precoAtual: 665,
+                desconto: 30,
                 badge: 'destaque',
                 cor: '#dc2626',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/biomedicina',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/technology-integrated-everyday-life_23-2151887054.jpg'
-            }, // fim do card 16
+            },
 
-            { // Começo do Card 17 - Ciências Biológicas
+             {
                 id: 17,
                 titulo: 'Ciências Biológicas',
                 descricao: 'Estude a vida e seus processos em todas as escalas',
@@ -1057,20 +995,17 @@
                 categoria: 'Ciências da Saúde',
                 grau: 'Bacharel',
                 duracao: '8 semestres',
-                precoOriginal: 950, //Preço Fictício
-                precoAtual: 665, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 950,
+                precoAtual: 665,
+                desconto: 30,
                 badge: 'destaque',
                 cor: '#dc2626',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/semipresencial/ciencias-biologicas',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/portrait-biologist-scientist-white-coat-working-expertise-laboratory-looking-into-microscope-analyzing-organic-gmo-leaf_482257-2118.jpg'
-            }, // fim do card 17
+            },
 
-            { // Começo do Card 18 - Ciências Contábeis
+            {
                 id: 18,
                 titulo: 'Ciências Contábeis',
                 descricao: 'Organize números e contribua para decisões inteligentes',
@@ -1079,152 +1014,131 @@
                 categoria: 'Gestão e Negócios',
                 grau: 'Bacharel',
                 duracao: '6 semestres',
-                precoOriginal: 480, //Preço Fictício
-                precoAtual: 336, // Preço Real
-                desconto: 30, //Percentual de Desconto
+                precoOriginal: 480,
+                precoAtual: 336,
+                desconto: 30,
                 badge: 'promocao',
                 cor: '#1e40af',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/ciencias-contabeis',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/smiling-businessman-eyeglasses-sitting-by-table-cafe-with-laptop-computer-while-using-smartphone-writing-something_171337-5589.jpg'
-            }, // fim do card 18
+            },
 
-            { // Começo do Card 19 - Coaching Digital
+            {
                 id: 19,
                 titulo: 'Coaching Digital',
                 descricao: 'Desenvolva habilidades e estratégias para o mundo digital',
                 area: 'negocios',
                 modalidade: 'Presencial | EAD',
                 categoria: 'Gestão e Negócios',
-                grau: 'CST',
+                grau: 'Tecnólogo',
                 duracao: '3 semestres',
-                precoOriginal: 480, // Preço Fictício
-                precoAtual: 336, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 480,
+                precoAtual: 336,
+                desconto: 30,
                 badge: 'promocao',
                 cor: '#1e40af',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/coach-digital',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/entrepreneur-video-call-with-client_482257-124464.jpg'
-            }, // fim do card 19
+            },
 
-            { // Começo do Card 20 - Coaching e Mentoring
+            {
                 id: 20,
                 titulo: 'Coaching e Mentoring',
                 descricao: 'Aprimore pessoas e potencialize carreiras',
                 area: 'negocios',
                 modalidade: 'Presencial | EAD',
                 categoria: 'Gestão e Negócios',
-                grau: 'CST',
+                grau: 'Tecnólogo',
                 duracao: '3 semestres',
-                precoOriginal: 480, //Preço Fictício
-                precoAtual: 336,// Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 480,
+                precoAtual: 336,
+                desconto: 30,
                 badge: 'promocao',
                 cor: '#1e40af',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/coach-mentoring',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/team-working-together-project_23-2149325429.jpg'
-            }, // fim do card 20
+            },
 
-            { // Começo do Card 21 - Data Science
+            {
                 id: 21,
                 titulo: 'Data Science',
                 descricao: 'Transforme dados em conhecimento e inovação',
                 area: 'tecnologia',
                 modalidade: 'EAD',
                 categoria: 'Tecnologia da Informação',
-                grau: 'CST',
+                grau: 'Tecnólogo',
                 duracao: '3 semestres',
-                precoOriginal: 980,  // Preço Fictício
-                precoAtual: 686, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 980,
+                precoAtual: 686,
+                desconto: 30,
                 badge: 'novo',
                 cor: '#7c3aed',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/ead/data-science',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/representation-user-experience-interface-design_23-2150169840.jpg'
-            }, // fim do card 21
+            },
 
-            { // Começo do Card 22 - Design de Interiores
+            {
                 id: 22,
                 titulo: 'Design de Interiores',
                 descricao: 'Crie ambientes funcionais e inspiradores',
                 area: 'arquitetura',
                 modalidade: 'EAD',
                 categoria: 'Tecnologia da Informação',
-                grau: 'CST',
+                grau: 'Tecnólogo',
                 duracao: '3 semestres',
-                precoOriginal: 980, // Preço Fictício
-                precoAtual: 686, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 980,
+                precoAtual: 686,
+                desconto: 30,
                 badge: 'novo',
                 cor: '#7c3aed',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/ead/design-de-interiores',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/living-room-mid-century-style-with-warm-colors-ai-generative_123827-23931.jpg'
-            }, // fim do card 22
+            },
 
-            { // Começo do Card 23 - Digital Security
+            {
                 id: 23,
                 titulo: 'Digital Security',
                 descricao: 'Proteja informações e garanta a segurança digital',
                 area: 'tecnologia',
                 modalidade: 'EAD',
                 categoria: 'Tecnologia da Informação',
-                grau: 'CST',
+                grau: 'Tecnólogo',
                 duracao: '3 semestres',
-                precoOriginal: 980,  // Preço Fictício
-                precoAtual: 686, // Preço Real
-                desconto: 30, // ercentual de Desconto
+                precoOriginal: 980,
+                precoAtual: 686,
+                desconto: 30,
                 badge: 'novo',
                 cor: '#7c3aed',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/ead/digital-security',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/side-shot-code-editor-using-react-js_181624-61842.jpg'
-            }, // fim do card 23
+            },
 
-            { // Começo do Card 24 - E-Commerce
+            {
                 id: 24,
                 titulo: 'E-Commerce',
                 descricao: 'Aprenda a gerenciar negócios digitais e marketplaces',
                 area: 'negocios',
                 modalidade: 'EAD',
                 categoria: 'Gestão e Negócios',
-                grau: 'CST',
+                grau: 'Tecnólogo',
                 duracao: '3 semestres',
-                precoOriginal: 980, // Preço Fictício
-                precoAtual: 686, // Preço Real
-                desconto: 30, //Percentual de Desconto
+                precoOriginal: 980,
+                precoAtual: 686,
+                desconto: 30,
                 badge: 'novo',
                 cor: '#7c3aed',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/ead/e-commerce',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/e-banking-payment-financial-connection-laptop_53876-26292.jpg'
-            }, // fim do card 24
+            },
 
-             { // Começo do Card 25 - Educação Especial
+             {
                 id: 25,
                 titulo: 'Educação Especial',
                 descricao: 'Desenvolva práticas inclusivas para todos os aprendizes',
@@ -1233,20 +1147,17 @@
                 categoria: 'Ciências Humanas',
                 grau: 'Licenciatura',
                 duracao: '7 semestres',
-                precoOriginal: 800, // Preço Fictício
-                precoAtual: 560, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 800,
+                precoAtual: 560,
+                desconto: 30,
                 badge: 'novo',
                 cor: '#059669',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/semipresencial/educacao-especial',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/teacher-toddler-playing-with-maths-puzzle-game-sitting-table-kindergarten_839833-24999.jpg'
-            }, // fim do card 25
+            },
 
-            { // Começo do Card 26 - Educação Física
+            {
                 id: 26,
                 titulo: 'Educação Física',
                 descricao: 'Transforme ciência em movimento e performance',
@@ -1255,20 +1166,17 @@
                 categoria: 'Ciências Humanas',
                 grau: 'Bacharel',
                 duracao: '8 semestres',
-                precoOriginal: 890, // Preço Fictício
-                precoAtual: 623, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 890,
+                precoAtual: 623,
+                desconto: 30,
                 badge: 'destaque',
                 cor: '#1e40af',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/educacao-fisica-bacharelado',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/people-training-athletics_23-2151077706.jpg'
-            }, // fim do card 26
+            },
 
-            { // Começo do Card 27 - Educação Física Licenciatura
+            {
                 id: 27,
                 titulo: 'Educação Física',
                 descricao: 'Inspire e forme novas gerações na educação física',
@@ -1277,43 +1185,37 @@
                 categoria: 'Ciências Humanas',
                 grau: 'Licenciatura',
                 duracao: '8 semestres',
-                precoOriginal: 800, // Preço Fictício
-                precoAtual: 560, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 800,
+                precoAtual: 560,
+                desconto: 30,
                 badge: 'novo',
                 cor: '#059669',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/semipresencial/educacao-fisica-licenciatura',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/medium-shot-girls-teacher-gym_23-2149038738.jpg'
-            }, // fim do card 27
+            },
 
-            { // Começo do Card 28 - Empreendedorismo Digital
+            {
                 id: 28,
                 titulo: 'Empreendedorismo Digital',
                 descricao: 'Construa soluções inovadoras para o mercado online',
                 area: 'negocios',
                 modalidade: 'EAD',
                 categoria: 'Gestão e Negócios',
-                grau: 'CST',
+                grau: 'Tecnólogo',
                 duracao: '3 semestres',
-                precoOriginal: 480, //Preço Fictício
-                precoAtual: 336, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 480,
+                precoAtual: 336,
+                desconto: 30,
                 badge: 'promocao',
                 cor: '#1e40af',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/coach-digital',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/close-up-young-businesswoman_23-2149153824.jpg'
-            }, // fim do card 28
+            },
 
-            { // Começo do Card 29 - Engenharia Civil
-                id: 29,
+             {
+                id: 30,
                 titulo: 'Engenharia Mecânica',
                 descricao: 'Projete e inove em sistemas e máquinas complexas',
                 area: 'engenharia',
@@ -1321,130 +1223,112 @@
                 categoria: 'Engenharia e Arquitetura',
                 grau: 'Bacharel',
                 duracao: '8 semestres',
-                precoOriginal: 1100, // Preço Fictício
-                precoAtual: 770, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 1100,
+                precoAtual: 770,
+                desconto: 30,
                 badge: 'destaque',
                 cor: '#059669',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/engenharia-mecanica',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/ski-holiday-yamagata-blue-cold_1232-4133.jpg'
-            }, // fim do card 29
+            },
             
-            { // Começo do Card 30 - Estética e Cosmética
-                id: 30,
+            {
+                id: 31,
                 titulo: 'Estética e Cosmética',
                 descricao: 'Valorize a beleza e o bem-estar com ciência e técnica',
                 area: 'saude',
                 modalidade: 'Presencial | Semipresencial',
                 categoria: 'Ciências da Saúde',
-                grau: 'CST',
+                grau: 'Tecnólogo',
                 duracao: '4 semestres',
-                precoOriginal: 950,  // Preço Fictício
-                precoAtual: 665, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 950,
+                precoAtual: 665,
+                desconto: 30,
                 badge: 'destaque',
                 cor: '#dc2626',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/estetica-e-cosmetica',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/female-doctor-diagnosing-melanoma-body-female-patient_23-2149365799.jpg'
-            }, // fim do card 30
+            },
 
-             { // Começo do Card 31 - Farmácia
-                id: 31,
+             {
+                id: 32,
                 titulo: 'Farmácia',
                 descricao: 'Atue na pesquisa, produção e distribuição de medicamentos',
                 area: 'saude',
                 modalidade: 'Presencial | Semipresencial',
                 categoria: 'Ciências da Saúde',
-                grau: 'Bacharel',
+                grau: 'Tecnólogo',
                 duracao: '9 semestres',
-                precoOriginal: 950, // Preço Fictício
-                precoAtual: 665, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 950,
+                precoAtual: 665,
+                desconto: 30,
                 badge: 'destaque',
                 cor: '#dc2626',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/farmacia',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/portrait-woman-working-pharmaceutical-industry_23-2151684863.jpg'
-            }, // fim do card 31
+            },
 
-            { // Começo do Card 32 - Filosofia
-                id: 32,
+            {
+                id: 33,
                 titulo: 'Filmmaker',
                 descricao: 'Conte histórias por meio da imagem e da narrativa audiovisual',
                 area: 'tecnologia',
                 modalidade: 'EAD',
                 categoria: 'Tecnologia da Informação',
-                grau: 'CST',
+                grau: 'Tecnólogo',
                 duracao: '3 semestres',
-                precoOriginal: 980, // Preço Fictício
-                precoAtual: 686, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 980,
+                precoAtual: 686,
+                desconto: 30,
                 badge: 'novo',
                 cor: '#7c3aed',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/ead/filmmaker',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/young-man-video-creator-working-editing-movie-montage-project_482257-126299.jpg'
-            }, // fim do card 32
+            },
 
-            { // Começo do Card 33 - Game Design
+            {
                 id: 33,
                 titulo: 'Game Design',
                 descricao: 'Desenvolva jogos que entretêm e engajam pessoas',
                 area: 'tecnologia',
                 modalidade: 'EAD',
                 categoria: 'Tecnologia da Informação',
-                grau: 'CST',
+                grau: 'Tecnólogo',
                 duracao: '3 semestres',
-                precoOriginal: 980, // Preço Fictício
-                precoAtual: 686, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 980,
+                precoAtual: 686,
+                desconto: 30,
                 badge: 'novo',
                 cor: '#7c3aed',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/ead/game-design',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/person-working-animation-porject_23-2149269938.jpg'
-            }, // fim do card 33
+            },
 
-            { // Começo do Card 34 - Gastronomia
+             {
                 id: 34,
                 titulo: 'Gastronomia',
                 descricao: 'Transforme ingredientes em experiências únicas',
                 area: 'humanas',
                 modalidade: 'Presencial | EAD',
                 categoria: 'Ciências Humanas',
-                grau: 'CST',
+                grau: 'Tecnólogo',
                 duracao: '4 semestres',
-                precoOriginal: 890, // Preço Fictício
-                precoAtual: 623, // Preço Real
-                desconto: 30,  // Percentual de Desconto
+                precoOriginal: 890,
+                precoAtual: 623,
+                desconto: 30,
                 badge: 'destaque',
                 cor: '#1e40af',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/gastronomia',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/side-view-cook-making-delicious-pasta_23-2150690631.jpg'
-            }, // fim do card 34
+            },
 
-            { // Começo do Card 35 - Geografia
+            {
                 id: 35,
                 titulo: 'Geografia',
                 descricao: 'Compreenda o mundo e a relação entre pessoas e território',
@@ -1453,108 +1337,93 @@
                 categoria: 'Ciências Humanas',
                 grau: 'Licenciatura',
                 duracao: '8 semestres',
-                precoOriginal: 800, // Preço Fictício
-                precoAtual: 560, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 800,
+                precoAtual: 560,
+                desconto: 30,
                 badge: 'novo',
                 cor: '#059669',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/semipresencial/geografia',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/binoculars-magnifying-glass-map_23-2147770898.jpg'
-            }, // fim do card 35
+            },
 
-            { // Começo do Card 36 - Gestão Ambiental
+             {
                 id: 36,
                 titulo: 'Gestão Ambiental',
                 descricao: 'Promova práticas sustentáveis e conscientes',
                 area: 'negocios',
                 modalidade: 'EAD',
                 categoria: 'Gestão e Negócios',
-                grau: 'CST',
+                grau: 'Tecnólogo',
                 duracao: '3 semestres',
-                precoOriginal: 980, // Preço Fictício
-                precoAtual: 686, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 980,
+                precoAtual: 686,
+                desconto: 30,
                 badge: 'novo',
                 cor: '#7c3aed',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/ead/gestao-ambiental',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/researchers-looking-alternative-energy-souces_23-2149311492.jpg'
-            }, // fim do card 36
+            },
 
-            { // Começo do Card 37 - Gestão Comercial
+            {
                 id: 37,
                 titulo: 'Gestão Comercial',
                 descricao: 'Organize e potencialize negócios e vendas',
                 area: 'negocios',
                 modalidade: 'EAD',
                 categoria: 'Gestão e Negócios',
-                grau: 'CST',
+                grau: 'Tecnólogo',
                 duracao: '3 semestres',
-                precoOriginal: 980, // Preço Fictício
-                precoAtual: 686, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 980,
+                precoAtual: 686,
+                desconto: 30,
                 badge: 'novo',
                 cor: '#7c3aed',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/ead/gestao-comercial',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/person-working-office_23-2149229007.jpg'
-            }, // fim do card 37
+            },
 
-            { // Começo do Card 38 - Gestão da Qualidade
+            {
                 id: 38,
                 titulo: 'Gestão da Qualidade',
                 descricao: 'Garanta processos e produtos eficientes',
                 area: 'negocios',
                 modalidade: 'EAD',
                 categoria: 'Gestão e Negócios',
-                grau: 'CST',
+                grau: 'Tecnólogo',
                 duracao: '3 semestres',
-                precoOriginal: 980, // Preço Fictício
-                precoAtual: 686, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 980,
+                precoAtual: 686,
+                desconto: 30,
                 badge: 'novo',
                 cor: '#7c3aed',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/ead/gestao-da-qualidade',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/e45c8b41a581878f138a98d94e33972ac16d0940/quality-control-inspector-writing-reports-while-analzying-manufactured-steel-rod-cylinders-industrial-building_637285-4081.jpg'
-            }, // fim do card 38
+            },
 
-            { // Começo do Card 39 - Gestão da Tecnologia da Informação
+            {
                 id: 39,
                 titulo: 'Gestão da Tecnologia da Informação',
                 descricao: 'Conecte pessoas, sistemas e inovação',
                 area: 'tecnologia',
                 modalidade: 'EAD',
                 categoria: 'Tecnologia da Informação',
-                grau: 'CST',
+                grau: 'Tecnólogo',
                 duracao: '4 semestres',
-                precoOriginal: 980, // Preço Fictício
-                precoAtual: 686, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 980,
+                precoAtual: 686,
+                desconto: 30,
                 badge: 'novo',
                 cor: '#7c3aed',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/ead/gestao-da-tecnologia-da-informacao',
-                // link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/female-programmer-coding-night_23-2151940453.jpg'
-            }, // fim do card 39
+            },
 
-            { // Começo do Card 40 - Gestão de Serviços Jurídicos e Notariais
+            {
                 id: 40,
                 titulo: 'Gestão de Serviços Jurídicos e Notariais',
                 descricao: 'Organize e gerencie atividades jurídicas com eficiência.',
@@ -1563,529 +1432,86 @@
                 categoria: 'Ciências Sociais Aplicadas',
                 grau: 'Bacharel',
                 duracao: '3 semestres',
-                precoOriginal: 890, // Preço Fictício
-                precoAtual: 623, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 890,
+                precoAtual: 623,
+                desconto: 30,
                 badge: 'destaque',
                 cor: '#1e40af',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/ead/gestao-de-servicos-juridicos-e-notariais',
-                // link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/consulting-with-lawyer_1098-19616.jpg'
-            }, // fim do card 40
+            },
 
-            { // Começo do Card 41 - Gestão da Trânsito
+            {
                 id: 41,
                 titulo: 'Gestão da Trânsito',
                 descricao: 'Planeje mobilidade urbana e segurança viária',
                 area: 'negocios',
                 modalidade: 'EAD',
                 categoria: 'Gestão e Negócios',
-                grau: 'CST',
+                grau: 'Tecnólogo',
                 duracao: '3 semestres',
-                precoOriginal: 980, // Preço Fictício
-                precoAtual: 686, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 980,
+                precoAtual: 686,
+                desconto: 30,
                 badge: 'novo',
                 cor: '#7c3aed',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/ead/gestao-de-transito',
-                // link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/curly-haired-female-pedestrian-crosses-busy-road-holds-modern-smartphone-with-blank-mockup-screen-poses-outdoors_273609-55788.jpg'
-            }, // fim do card 41
+            },
 
-            { // Começo do Card 42 - Gestão Financeira
+            {
                 id: 42,
                 titulo: 'Gestão Financeira',
                 descricao: 'Administre recursos com estratégia e controle',
                 area: 'negocios',
                 modalidade: 'EAD',
                 categoria: 'Gestão e Negócios',
-                grau: 'CST',
+                grau: 'Tecnólogo',
                 duracao: '3 semestres',
-                precoOriginal: 980, // Preço Fictício
-                precoAtual: 686, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 980,
+                precoAtual: 686,
+                desconto: 30,
                 badge: 'novo',
                 cor: '#7c3aed',
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/ead/gestao-financeira',
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/busy-business-woman-looking-financial-reports_482257-7706.jpg'
-            }, // fim do card 42
-
-            { // Começo do Card 43 - Gestão Hospitalar
+            },
+            {
                 id: 43,
                 titulo: 'Gestão Hospitalar',
                 descricao: 'Organize serviços de saúde com eficácia e cuidado',
                 area: 'saude',
                 modalidade: 'Semipresencial',
                 categoria: 'Ciências da Saúde',
-                grau: 'CST',
+                grau: 'Tecnólogo',
                 duracao: '5 semestres',
-                precoOriginal: 950, // Preço Fictício
-                precoAtual: 665, // Preço Real
-                desconto: 30, // Percentual de Desconto
+                precoOriginal: 950,
+                precoAtual: 665,
+                desconto: 30,
                 badge: 'destaque',
                 cor: '#dc2626',
-                //Link do Carrinho
                 checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
                 pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/semipresencial/gestao-hospitalar',
-                //link da imagem
                 imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/pharmacist-nurse-with-stethoscope-analyzing-healthcare-treatment_482257-19380.jpg'
-            }, // fim do card 43
-
-            { //
-                id: 44,
-                titulo: 'Gestão Pública',
-                descricao: 'Planeje e organize ações para proteger a sociedade',
-                area: 'negocios',
-                modalidade: 'EAD',
-                categoria: 'Gestão e Negócios',
-                grau: 'CST',
-                duracao: '3 semestres',
-                precoOriginal: 980, // Preço Fictício
-                precoAtual: 686, // Preço Real
-                desconto: 30, // Percentual de Desconto
-                badge: 'novo',
-                cor: '#7c3aed',
-                //Link do Carrinho
-                checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
-                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/ead/gestao-publica',
-                //link da imagem
-                imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/individual-expressing-concern-about-rising-cost-living_23-2151735334.jpg'
-            }, // fim do card 44
-
-            { // Começo do Card 45 - História
-                id: 45,
-                titulo: 'História',
-                descricao: 'Estude o passado para compreender o presente e moldar o futuro',
-                area: 'educacao',
-                modalidade: 'Semipresencial',
-                categoria: 'Ciências Humanas',
-                grau: 'Licenciatura',
-                duracao: '8 semestres',
-                precoOriginal: 800, // Preço Fictício
-                precoAtual: 560, // Preço Real
-                desconto: 30, // Percentual de Desconto
-                badge: 'novo',
-                cor: '#059669',
-                //Link do Carrinho
-                checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
-                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/semipresencial/historia',
-                //link da imagem
-                imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/view-ancient-scroll-writing-documenting-history_23-2151751684.jpg'
-            }, // fim do card 45
-
-            { // Começo do Card 46 - Jornalismo
-                id: 46,
-                titulo: 'Jornalismo',
-                descricao: 'Informe, conte histórias e impacte a sociedade',
-                area: 'humanas',
-                modalidade: 'Presencial',
-                categoria: 'Ciências Humanas',
-                grau: 'Bacharel',
-                duracao: '8 semestres',
-                precoOriginal: 890, // Preço Fictício
-                precoAtual: 623, // Preço Real
-                desconto: 30, // Percentual de Desconto
-                badge: 'destaque',
-                cor: '#1e40af',
-                //Link do Carrinho
-                checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
-                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/jornalismo',
-                //link da imagem
-                imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/woman-giving-speech-press-conference_23-2151940444.jpg'
-            }, // fim do card 46
-
-            { // Começo do Card 47 - Letras - Espanhol
-                id: 47,
-                titulo: 'Letras - Espanhol',
-                descricao: 'Domine a língua e cultura espanhola.',
-                area: 'educacao',
-                modalidade: 'Semipresencial',
-                categoria: 'Ciências Humanas',
-                grau: 'Licenciatura',
-                duracao: '8 semestres',
-                precoOriginal: 800, // Preço Fictício
-                precoAtual: 560, // Preço Real
-                desconto: 30, // Percentual de Desconto
-                badge: 'novo',
-                cor: '#059669',
-                // Link do Carrinho
-                checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                // Link da Página do Curso do great
-                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/semipresencial/letras-espanhol',
-                // link da imagem
-                imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/beautiful-view-plaza-de-espana-seville-spain_181624-39542.jpg'
-            }, // fim do card 47
-
-            { // Começo do Card 48 - Letras - Inglês
-                id: 48,
-                titulo: 'Letras - Inglês',
-                descricao: 'Aprenda inglês e expanda oportunidades globais',
-                area: 'educacao',
-                modalidade: 'Semipresencial',
-                categoria: 'Ciências Humanas',
-                grau: 'Licenciatura',
-                duracao: '8 semestres',
-                precoOriginal: 800, // Preço Fictício
-                precoAtual: 560, // Preço Real
-                desconto: 30, // Percentual de Desconto
-                badge: 'novo',
-                cor: '#059669',
-                // Link do Carrinho
-                checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                // Link da Página do Curso do great
-                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/semipresencial/letras-ingles',
-                // link da imagem
-                imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/road-signs-pillar-downtown_23-2148184302.jpg'
-            }, // fim do card 48
-
-            { // Começo do Card 49 - Letras - Português
-                id: 49,
-                titulo: 'Letras - Português',
-                descricao: 'Explore a língua portuguesa e suas possibilidades',
-                area: 'educacao',
-                modalidade: 'Semipresencial',
-                categoria: 'Ciências Humanas',
-                grau: 'Licenciatura',
-                duracao: '8 semestres',
-                precoOriginal: 800, // Preço Fictício
-                precoAtual: 560, // Preço Real
-                desconto: 30, // Percentual de Desconto
-                badge: 'novo',
-                cor: '#059669',
-                // Link do Carrinho
-                checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                // Link da Página do Curso do great
-                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/semipresencial/letras-portugues',
-                // link da imagem
-                imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/aerial-photo-rio-de-janeiro-surrounded-by-sea-hills-sunlight-brazil_181624-11362.jpg'
-            }, // fim do card 49
-
-            { // Começo do Card 50 - Logística
-                id: 50,
-                titulo: 'Logística',
-                descricao: 'Organize fluxos e transporte com eficiência',
-                area: 'negocios',
-                modalidade: 'EAD',
-                categoria: 'Gestão e Negócios',
-                grau: 'CST',
-                duracao: '3 semestres',
-                precoOriginal: 980, // Preço Fictício
-                precoAtual: 686, // Preço Real
-                desconto: 30, // Percentual de Desconto
-                badge: 'novo',
-                cor: '#7c3aed',
-                //Link do Carrinho
-                checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
-                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/ead/logistica',
-                //link da imagem
-                imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/interior-large-distribution-warehouse-with-shelves-stacked-with-palettes-goods-ready-market_342744-1481%20(1).jpg'
-            }, // fim do card 50
+            },
             
-            { // Começo do Card 51 - Matemática
-                id: 51,
-                titulo: 'Matemática',
-                descricao: 'Explore a língua portuguesa e suas possibilidades',
-                area: 'educacao',
-                modalidade: 'Semipresencial',
-                categoria: 'Ciências Humanas',
-                grau: 'Licenciatura',
-                duracao: '8 semestres',
-                precoOriginal: 800, // Preço Fictício
-                precoAtual: 560, // Preço Real
-                desconto: 30, // Percentual de Desconto
-                badge: 'novo',
-                cor: '#059669',
-                // Link do Carrinho
-                checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                // Link da Página do Curso do great
-                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/semipresencial/matematica-licenciatura',
-                // link da imagem
-                imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/math-chalkboard-background_23-2148174264.jpg'
-            }, // fim do card 51
-
-            { // Começo do Card 52 - Negócios Imobiliários
-                id: 52,
-                titulo: 'Negócios Imobiliários',
-                descricao: 'OGerencie e valorize propriedades e investimentos',
-                area: 'negocios',
-                modalidade: 'EAD',
-                categoria: 'Gestão e Negócios',
-                grau: 'CST',
-                duracao: '3 semestres',
-                precoOriginal: 980, // Preço Fictício
-                precoAtual: 686, // Preço Real
-                desconto: 30, // Percentual de Desconto
-                badge: 'novo',
-                cor: '#7c3aed',
-                //Link do Carrinho
-                checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
-                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/ead/negocios-imobiliarios',
-                //link da imagem
-                imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/front-view-man-working-as-real-estate-agent_23-2151064876.jpg'
-            }, // fim do card 52
-
-            { // Começo do Card 53 - Nutrição 
-                id: 53,
-                titulo: 'Nutrição',
-                descricao: 'Promova saúde e bem-estar através da alimentação',
-                area: 'saude',
-                modalidade: 'Presencial | Semipresencial',
-                categoria: 'Ciências da Saúde',
-                grau: 'Bacharel',
-                duracao: '9 semestres',
-                precoOriginal: 950, // Preço Fictício
-                precoAtual: 665, // Preço Real
-                desconto: 30, // Percentual de Desconto
-                badge: 'destaque',
-                cor: '#dc2626',
-                //Link do Carrinho
-                checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
-                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/nutricao',
-                // link da imagem
-                imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/closeup-athletic-woman-adding-strawberries-while-making-fruit-salad-kitchen_637285-6186.jpg'
-            }, // fim do card 53
-
-            { // Começo do Card 54 - Odontologia
-                id: 54,
-                titulo: 'Odontologia',
-                descricao: 'Cuidar de sorrisos e da saúde bucal',
-                area: 'saude',
-                modalidade: 'Presencial',
-                categoria: 'Ciências da Saúde',
-                grau: 'Bacharel',
-                duracao: '10 semestres',
-                precoOriginal: 950, // Preço Fictício
-                precoAtual: 665, // Preço Real
-                desconto: 30, // Percentual de Desconto
-                badge: 'destaque',
-                cor: '#dc2626',
-                //Link do Carrinho
-                checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                // Link da Página do Curso do great
-                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/odontologia',
-                // link da imagem
-                imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/full-equiped-medical-cabinet_1303-23913.jpg'
-            }, //
-
-            { // Começo do Card 55 - Pedagogia
-                id: 55,
-                titulo: 'Pedagogia',
-                descricao: 'Inspire e forme futuras gerações com educação de qualidade',
-                area: 'educacao',
-                modalidade: 'Semipresencial',
-                categoria: 'Ciências Humanas',
-                grau: 'Licenciatura',
-                duracao: '8 semestres',
-                precoOriginal: 800, // Preço Fictício
-                precoAtual: 560, // Preço Real
-                desconto: 30, // Percentual de Desconto
-                badge: 'novo',
-                cor: '#059669',
-                // Link do Carrinho
-                checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                // Link da Página do Curso do great
-                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/pedagogia',
-                // link da imagem
-                imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/front-view-woman-reading-something-her-students_23-2148633356.jpg'
-            }, // fim do card 55
-
-            { // Começo do Card 56 - Processos Gerenciais
-                id: 56,
-                titulo: 'Processos Gerenciais',
-                descricao: 'Organize e otimize empresas e organizações',
-                area: 'negocios',
-                modalidade: 'EAD',
-                categoria: 'Gestão e Negócios',
-                grau: 'CST',
-                duracao: '3 semestres',
-                precoOriginal: 980, // Preço Fictício
-                precoAtual: 686, // Preço Real
-                desconto: 30, // Percentual de Desconto
-                badge: 'novo',
-                cor: '#7c3aed',
-                //Link do Carrinho
-                checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
-                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/ead/processos-gerenciais',
-                //link da imagem
-                imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/people-analyzing-checking-finance-graphs-office_23-2150377181.jpg'
-            },// fim do card 56
-
-            { // Começo do Card 57 - Publicidade e Propaganda
-                id: 57,
-                titulo: 'Publicidade e Propaganda',
-                descricao: 'Crie campanhas que conectam pessoas e marcas',
-                area: 'humanas',
-                modalidade: 'Presencial',
-                categoria: 'Ciências Humanas',
-                grau: 'Bacharel',
-                duracao: '8 semestres',
-                precoOriginal: 890, // Preço Fictício
-                precoAtual: 623, // Preço Real
-                desconto: 30, // Percentual de Desconto
-                badge: 'destaque',
-                cor: '#1e40af',
-                //Link do Carrinho
-                checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
-                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/publicidade-e-propaganda',
-                //link da imagem
-                imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/people-working-together-animation-studio_23-2149208004.jpg'
-            }, // fim do card 57
-
-            { // Começo do Card 58 - Relações Internacionais
-                id: 58,
-                titulo: 'Relações Internacionais',
-                descricao: 'Atue em um mundo globalizado com estratégia e visão',
-                area: 'humanas',
-                modalidade: 'Presencial',
-                categoria: 'Ciências Humanas',
-                grau: 'Bacharel',
-                duracao: '8 semestres',
-                precoOriginal: 890, // Preço Fictício
-                precoAtual: 623, // Preço Real
-                desconto: 30, // Percentual de Desconto
-                badge: 'destaque',
-                cor: '#1e40af',
-                //Link do Carrinho
-                checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
-                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/relacoes-internacionais',
-                //link da imagem
-                imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/people-celebrating-world-population-day_23-2151493235.jpg'
-            }, // fim do card 58
-
-            { // Começo do Card 59 - Segurança Pública
-                id: 59,
-                titulo: 'Segurança Pública',
-                descricao: 'Planeje e organize ações para proteger a sociedade',
-                area: 'humanas',
-                modalidade: 'EAD',
-                categoria: 'Ciências Humanas',
-                grau: 'CST',
-                duracao: '3 semestres',
-                precoOriginal: 890, // Preço Fictício
-                precoAtual: 623, // Preço Real
-                desconto: 30, // Percentual de Desconto
-                badge: 'destaque',
-                cor: '#1e40af',
-                //Link do Carrinho
-                checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
-                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/ead/seguranca-publica',
-                //link da imagem
-                imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/closeup-shot-warning-lamp-street-night_181624-36851.jpg'
-            }, // fim do card 59
-
-            { // Começo do Card 60 - Serviço Social
-                id: 60,
-                titulo: 'Seviços Sociais',
-                descricao: 'Atue promovendo inclusão e cidadania',
-                area: 'humanas',
-                modalidade: 'EAD',
-                categoria: 'Ciências Humanas',
-                grau: 'Bacharel',
-                duracao: '8 semestres',
-                precoOriginal: 890, // Preço Fictício
-                precoAtual: 623, // Preço Real
-                desconto: 30, // Percentual de Desconto
-                badge: 'destaque',
-                cor: '#1e40af',
-                //Link do Carrinho
-                checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
-                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/servico-social',
-                //link da imagem
-                imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/close-up-people-holding-box_23-2149196123.jpg'
-            }, // fim do card 60
-
-            { // Começo do Card 61 - Sistemas de Informação
-                id: 61,
-                titulo: 'Sistema da Informação',
-                descricao: 'Conecte tecnologia e processos organizacionais',
-                area: 'tecnologia',
-                modalidade: 'Presencial',
-                categoria: 'Tecnologia da Informação',
-                grau: 'CST',
-                duracao: '8 semestres',
-                precoOriginal: 980, // Preço Fictício
-                precoAtual: 686, // Preço Real
-                desconto: 30, // Percentual de Desconto
-                badge: 'novo',
-                cor: '#7c3aed',
-                //Link do Carrinho
-                checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
-                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/sistemas-de-informacao',
-                //link da imagem
-                imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/cropped-shot-businesswomen-working-with-laptops_74855-2727.jpg'
-            }, // fim do card 61
-
-            { // Começo do Card 62 - Teologia
-                id: 62,
-                titulo: 'Teologia',
-                descricao: 'Estude crenças e valores que moldam a sociedade',
-                area: 'humanas',
-                modalidade: 'EAD',
-                categoria: 'Ciências Humanas',
-                grau: 'Bacharel',
-                duracao: '8 semestres',
-                precoOriginal: 890, // Preço Fictício
-                precoAtual: 623, // Preço Real
-                desconto: 30, // Percentual de Desconto
-                badge: 'destaque',
-                cor: '#1e40af',
-                //Link do Carrinho
-                checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
-                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/ead/teologia',
-                //link da imagem
-                imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/side-view-people-holding-books_23-2150062134.jpg'
-            }, // fim do card 62
-
-            { // Começo do Card 63 - Terapia Ocupacional
-                id: 63,
-                titulo: 'Terapia Ocupacional',
-                descricao: 'Promova autonomia e qualidade de vida das pessoas',
-                area: 'saude',
-                modalidade: 'Presencial',
-                categoria: 'Ciências da Saúde',
-                grau: 'Bacharel',
-                duracao: '10 semestres',
-                precoOriginal: 950, // Preço Fictício
-                precoAtual: 665, // Preço Real
-                desconto: 30, // Percentual de Desconto
-                badge: 'destaque',
-                cor: '#dc2626',
-                //Link do Carrinho
-                checkout: 'https://gex.goexplosion.com/link/checkout?utm=central-de-matriculas-grad-presencial',
-                //Link da Página do Curso do great
-                pagina: 'https://ead.uninassau.edu.br/central-de-matriculas/rio-largo/grad/presencial/terapia-ocupacional',
-                // link da imagem
-                imagem:'https://raw.githubusercontent.com/Henkribeiro/riolargo/refs/heads/main/side-view-child-tutor-home-learning_23-2148524526.jpg'
-            }, // fim do card 63
             
+
+            /* 
+            checkout:''
+            pagina:''
+            imagem:''
+            */
+
         ];
 
         // Estado dos filtros
         let filtros = {
             modalidade: 'todos',
-            area: 'todos',
-            grau: 'todos'
+            area: 'todos'
         };
 
         // Mapa para guardar timeouts de esconder cards (por card)
@@ -2109,7 +1535,7 @@
         // Função para criar um card
         function criarCard(curso, delay = 0) {
             return `
-                <div class="course-card" data-modalidade="${curso.modalidade}" data-area="${curso.area}" data-grau="${curso.grau}" style="animation-delay: ${delay}ms">
+                <div class="course-card" data-modalidade="${curso.modalidade}" data-area="${curso.area}" style="animation-delay: ${delay}ms">
                     <div class="badge-container">
                         <div class="badge ${curso.badge}">
                             <svg class="icon" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor">
@@ -2140,9 +1566,9 @@
                                 <polyline points="12 6 12 12 16 14"/>
                                 </svg>
                                 <span>${curso.modalidade.charAt(0).toUpperCase() + curso.modalidade.slice(1)}</span>
-                    </div>
+                        </div>
                         
-                    <div class="detail-item">
+                        <div class="detail-item">
                             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                 <rect width="20" height="14" x="2" y="3" rx="2"/>
                                 <circle cx="8" cy="10" r="2"/>
@@ -2150,7 +1576,7 @@
                             </svg>
                             <span>${curso.duracao}</span>
                         </div>
-                    </div>
+</div>
 
                         <div class="pricing">
                             <div class="price-old">
@@ -2211,7 +1637,6 @@
                 cards.forEach((card) => {
                     let modalidade = card.dataset.modalidade;
                     const area = card.dataset.area;
-                    const categoria = card.dataset.grau;
 
                     // Suporte a múltiplas modalidades separadas por "|"
                     let modalidades = modalidade
@@ -2220,14 +1645,11 @@
                         .map(m => m.trim());
 
                     const filtroModalidade = filtros.modalidade.toLowerCase();
-                    const filtroArea = filtros.area.toLowerCase();
-                    const filtroCategoria = filtros.grau.toLowerCase();
 
                     const matchModalidade = filtroModalidade === 'todos' || modalidades.includes(filtroModalidade);
-                    const matchArea = filtroArea === 'todos' || area === filtros.area;
-                    const matchCategoria = filtroCategoria === 'todos' || categoria === filtros.grau;
+                    const matchArea = filtros.area === 'todos' || area === filtros.area;
 
-                    if (matchModalidade && matchArea && matchCategoria) {
+                    if (matchModalidade && matchArea) {
                         // Se havia timeout agendado para esse card, cancela
                         if (hideTimeouts.has(card)) {
                             clearTimeout(hideTimeouts.get(card));
@@ -2295,9 +1717,7 @@
         function clearAllFilters() {
             filtros = {
                 modalidade: 'todos',
-                area: 'todos',
-                grau: 'todos'
-              
+                area: 'todos'
             };
 
             // Resetar botões ativos
