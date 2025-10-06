@@ -1,0 +1,82 @@
+<script>
+(async () => {
+  // 1. Pegar parâmetros da URL (ex: ?polo=itabaiana)
+  const params = new URLSearchParams(window.location.search);
+  const polo = params.get('polo');
+  const tipo = params.get('tipo');
+
+  // 2. URLs base atualizadas
+  const URL_FACULDADE = 'https://uninassau.edu.br';
+  const URL_INSTITUCIONAL = `https://posgrad.uninassau.edu.br/tecnico/?polo=${polo}`;
+
+  // 3. Se não tiver polo, redireciona para a página principal
+  if (!polo) {
+    window.location.href = URL_FACULDADE;
+    return;
+  }
+
+  // 4. Buscar configurações do GitHub (JSON)
+  const response = await fetch(`https://raw.githubusercontent.com/Henkribeiro/polos/main/${polo}.json`);
+  let configs = await response.json();
+
+  // 5. Adicionar os parâmetros ao objeto configs
+  configs = { ...configs, polo, tipo };
+
+  // 6. Se tiver GTM configurado, injeta script do Google Tag Manager
+  if (configs["polo-google-gtm"]) {
+    const script = document.createElement('script');
+    script.innerHTML = `
+      (function(w,d,s,l,i){w[l]=w[l]||[];
+      w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','${configs["polo-google-gtm"]}');
+    `;
+    document.head.appendChild(script);
+  }
+
+  // 7. Se tiver Pixel configurado, injeta script do Facebook Pixel
+  if (configs["polo-facebook-pixel"]) {
+    const script = document.createElement('script');
+    script.innerHTML = `
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){
+      n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
+      s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+      (window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init','${configs["polo-facebook-pixel"]}');
+    `;
+    document.head.appendChild(script);
+  }
+
+  // 8. Função para substituir {{chaves}} no HTML pelo valor no JSON
+  function substituirChaves(html) {
+    return html.replace(/{{([^{}]+)}}/g, (match, chave) => {
+      const partes = chave.split('.');
+      let valor = configs;
+      for (const p of partes) {
+        if (valor && valor[p] !== undefined) {
+          valor = valor[p];
+        } else {
+          return match; // se não encontrar, mantém o texto original
+        }
+      }
+      return valor;
+    });
+  }
+
+  // 9. Atualizar o conteúdo do site
+  const site = document.getElementById('site');
+  if (site) {
+    site.innerHTML = substituirChaves(site.innerHTML);
+  }
+
+  // 10. Corrigir links de WhatsApp com base no JSON
+  document.querySelectorAll('a[href="{{polo-whatsapp}}"]').forEach(link => {
+    link.href = configs['polo-whatsapp'] || link.href;
+  });
+
+})();
+</script>

@@ -1,0 +1,199 @@
+{
+    "polo-titulo": "Itabaiana",
+    "polo-endereco": "Rua Euclides Paes Mendonça, Mamede Paes Mendonça, Itabaiana - SE",
+    "polo-telefone1": "(79) 99649-4824",
+    "polo-telefone2": "(81) 98180-1386",
+    "polo-whatsapp": "https://wa.me/5579996494824",
+    "polo-google-gtm": "",
+    "polo-facebook-pixel": "",
+    "cursos": {
+                "ao-vivo-especializacao-em-neurociencias-e-comportamento-humano": {
+                    "a-vista": "?utm=pos-aovivo-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacaoemneurocienciasecomportamentohumano",
+                    "preco": "De <strike> R$3.323,35 </strike> por <br><b style='font-size:140%'> 1 + 18 x R$ 166,11</b><br>ou R$ 2.753,13 à vista"
+                },
+                "ao-vivo-especializacao-em-farmacia-clinica-e-atencao-farmaceutica": {
+                    "a-vista": "?utm=pos-aovivo-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacaoemfarmaciaclínicaeatencaofarmaceutica",
+                    "preco": "De <strike>R$ 3.323,35 </strike> por<br><b style='font-size:140%'>1 + 18 x R$ 166,11 </b><br>ou R$ 2.753,13 à vista"
+                },
+                "ao-vivo-especializacao-em-direito-penal-e-processo-penal": {
+                    "a-vista": "?utm=pos-aovivo-uninassau-itabaianamamedepaesmendoncase-1&utm_source=posgraduninassau&utm_campaign=especializacaoemdireitopenaleprocessopenal",
+                    "preco": "De <strike>R$ 2.990,83 </strike> por<br><b style='font-size:140%'>1 + 18 x R$ 149,49 </b><br>ou R$ 2.477,75 à vista"
+                },
+                "ao-vivo-especializacao-em-direito-do-trabalho-previdenciario": {
+                    "a-vista": "?utm=pos-aovivo-uninassau-itabaianamamedepaesmendoncase-1&utm_source=posgraduninassau&utm_campaign=especializacaoemdireitodotrabalhoprevidenciario",
+                    "preco": "De <strike>R$ 2.990,83 </strike> por<br><b style='font-size:140%'>1 + 18 x R$ 149,49 </b><br>ou R$ 2.477,75 à vista"
+                },
+                "ao-vivo-mba-em-gestao-de-pessoas": {
+                    "a-vista": "?utm=pos-aovivo-uninassau-itabaianamamedepaesmendoncase-2&utm_source=posgraduninassau&utm_campaign=mbaemgestaodepessoas",
+                    "preco": "De <strike>R$ 3.655,88</strike> por<br><b style='font-size:140%'> 1 + 18 x R$ 182,73 </b><br>ou R$ 3.028,67 à vista"
+                },
+                "ao-vivo-especializacao-em-gestao-de-departamento-pessoal-e-legislacao-trabalhista": {
+                    "a-vista": "?utm=pos-aovivo-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacaoemgestaodedepartamentopessoalelegislacaotrabalhista",
+                    "preco": "De <strike>R$ 3.323,35 </strike> por<br><b style='font-size:140%'>1 + 18 x R$ 166,11 </b><br>ou R$ 2.753,13 à vista"
+                },
+                "ao-vivo-especializacao-em-psicologia-organizacional-e-do-trabalho": {
+                    "a-vista": "?utm=pos-aovivo-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacaoempsicologiaorganizacionaledotrabalho",
+                    "preco": "De <strike>R$ 3.323,35 </strike> por<br><b style='font-size:140%'>1 + 18 x R$ 166,11 </b><br>ou R$ 2.753,13 à vista"
+                },
+                "ao-vivo-especializacao-em-tea-transtorno-do-espectro-autista": {
+                    "a-vista": "?utm=pos-aovivo-uninassau-itabaianamamedepaesmendoncase-1&utm_source=posgraduninassau&utm_campaign=especializacaoemtea–transtornodoespectroautista",
+                    "preco": "De <strike>R$ 2.990,83 </strike> por<br><b style='font-size:140%'>1 + 18 x R$ 149,49 </b><br>ou R$ 2.477,75 à vista"
+                },
+                "especializacao-em-direito-civil": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase-1&utm_source=posgraduninassau&utm_campaign=especializacao em direito civil",
+                    "preco": "De <strike>R$ 2.520,57 </strike> por<br><b style='font-size:140%'> 12 x R$ 192,51</b><br>ou R$ 1.963,93 à vista"
+                },
+                "especializacao-em-administracao-publica-e-direito-publico": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase-1&utm_source=posgraduninassau&utm_campaign=especializacao em administracao publica e direito publico",
+                    "preco": "De <strike>R$ 2.520,57 </strike> por<br><b style='font-size:140%'> 12 x R$ 192,51</b><br>ou R$ 1.963,93 à vista"
+                },
+                "especializacao-em-planejamento-e-gestao-educacional": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacao em planejamento e gestao educacional",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "especializacao-em-supervisao-escolar-e-orientacao": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacao em supervisao escolar e orientacao",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "especializacao-em-direito-do-trabalho": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase-1&utm_source=posgraduninassau&utm_campaign=especializacao em direito do trabalho",
+                    "preco": "De <strike>R$ 2.520,57 </strike> por<br><b style='font-size:140%'> 12 x R$ 192,51</b><br>ou R$ 1.963,93 à vista"
+                },
+                "especializacao-em-psicopedagogia-na-escola": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacao em psicopedagogia na escola",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "especializacao-em-educacao-infantil-e-alfabetizacao": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacao em educacao infantil e alfabetizacao",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "especializacao-em-educacao-especial-e-inclusiva": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacao em educacao especial e inclusiva",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "especializacao-em-praticas-de-letramento-e-alfabetizacao": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacao em praticas de letramento e alfabetizacao",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "especializacao-em-comunicacao-e-portugues-juridico": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacao em comunicacao e portugues juridico",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "especializacao-em-docencia-da-educacao-superior": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacao em docencia da educacao superior",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "especializacao-em-programa-neuroeducativo": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacao em programa neuroeducativo",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "especializacao-em-educacao-em-meio-ambiente": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacao em educacao em meio ambiente",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "especializacao-em-financas-para-empresas": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacao em financas para empresas",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "especializacao-em-gestao-de-departamento-pessoal": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacao em gestao de departamento pessoal",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "especializacao-em-gestao-da-qualidade-e-auditoria": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacao em gestao da qualidade e auditoria",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "mba-em-coaching-e-gestao-de-pessoas": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=mba em coaching e gestao de pessoas",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "mba-em-gerenciamento-de-projetos": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=mba em gerenciamento de projetos",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "mba-em-auditoria-e-controladoria": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=mba em auditoria e controladoria",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "mba-em-administracao-publica": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=mba em administracao publica",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "mba-em-marketing-e-vendas": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=mba em marketing e vendas",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "especializacao-em-gestao-em-engenharia-de-producao": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacao em gestao em engenharia de producao",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "especializacao-em-psicologia-nas-organizacoes": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacao em psicologia nas organizacoes",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "especializacao-em-saude-publica-e-coletiva": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase-1&utm_source=posgraduninassau&utm_campaign=especializacao em saude publica e coletiva",
+                    "preco": "De <strike>R$ 2.520,57 </strike> por<br><b style='font-size:140%'> 12 x R$ 192,51</b><br>ou R$ 1.963,93 à vista"
+                },
+                "especializacao-em-engenharia-ambiental-e-saneamento-basico": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacao em engenharia ambiental e saneamento basico",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "especializacao-em-administracao-de-contratos-publicos": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacao em administracao de contratos publicos",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "especializacao-em-metodologia-do-ensino-da-lingua-portuguesa": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase-1&utm_source=posgraduninassau&utm_campaign=especializacao em metodologia do ensino da lingua portuguesa",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "especializacao-em-enfermagem-com-foco-em-oncologia": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase-1&utm_source=posgraduninassau&utm_campaign=especializacao em enfermagem com foco em oncologia",
+                    "preco": "De <strike>R$ 2.520,57 </strike> por<br><b style='font-size:140%'> 12 x R$ 192,51</b><br>ou R$ 1.963,93 à vista"
+                },
+                "especializacao-em-farmacologia-hospitalar": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase-1&utm_source=posgraduninassau&utm_campaign=especializacao em farmacologia hospitalar",
+                    "preco": "De <strike>R$ 2.520,57 </strike> por<br><b style='font-size:140%'> 12 x R$ 192,51</b><br>ou R$ 1.963,93 à vista"
+                },
+                "especializacao-em-seguranca-digital": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacao em seguranca digital",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "especializacao-em-ciencias-de-dados": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacao em ciencias de dados",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "especializacao-em-gerenciamento-de-ti": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase-1&utm_source=posgraduninassau&utm_campaign=especializacao em gerenciamento de ti",
+                    "preco": "De <strike>R$ 2.520,57 </strike> por<br><b style='font-size:140%'> 12 x R$ 192,51</b><br>ou R$ 1.963,93 à vista"
+                },
+                "especializacao-em-direito-e-meio-ambiente": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase-1&utm_source=posgraduninassau&utm_campaign=especializacao em direito e meio ambiente",
+                    "preco": "De <strike>R$ 2.520,57 </strike> por<br><b style='font-size:140%'> 12 x R$ 192,51</b><br>ou R$ 1.963,93 à vista"
+                },
+                "mba-em-recursos-humanos": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=mba em recursos humanos",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "especializacao-em-estetica-e-cosmetologia": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase-1&utm_source=posgraduninassau&utm_campaign=especializacao em estetica e cosmetologia",
+                    "preco": "De <strike>R$ 2.520,57 </strike> por<br><b style='font-size:140%'> 12 x R$ 192,51</b><br>ou R$ 1.963,93 à vista"
+                },
+                "especializacao-em-ludicidade-aplicada-em-educacao": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacao em ludicidade aplicada em educacao",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "especializacao-em-gestao-educacional": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase&utm_source=posgraduninassau&utm_campaign=especializacao em gestao educacional",
+                    "preco": "De <strike>R$ 1.673,26 </strike> por<br><b style='font-size:140%'> 12 x R$ 127,79  </b><br>ou R$ 1303,66 à vista"
+                },
+                "especializacao-em-saude-e-seguranca-do-trabalhador": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase-1&utm_source=posgraduninassau&utm_campaign=especializacao em saude e seguranca do trabalhador",
+                    "preco": "De <strike>R$ 2.520,57 </strike> por<br><b style='font-size:140%'> 12 x R$ 192,51</b><br>ou R$ 1.963,93 à vista"
+                },
+                "mba-em-gestao-tecnologica-big-data-e-inteligencia-artificial": {
+                    "a-vista": "?utm=pos-grad-uninassau-itabaianamamedepaesmendoncase-1&utm_source=posgraduninassau&utm_campaign=mba em gestao tecnologica big data e inteligencia artificial",
+                    "preco": "De <strike>R$ 2.520,57 </strike> por<br><b style='font-size:140%'> 12 x R$ 192,51</b><br>ou R$ 1.963,93 à vista"
+                }
+            }
+        }

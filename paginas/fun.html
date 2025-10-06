@@ -1,0 +1,154 @@
+<script>
+	(async () => {
+ 
+		const urlParams = new URLSearchParams(window.location.search);
+		const polo = urlParams.get('polo');
+		const tipo = urlParams.get('tipo');
+ 
+		const LINK_FACULDADE = `https://uninassau.edu.br`;
+		const LINK_INSTITUCIONAL = `https://posgrad.uniassau.edu.br/tecnico/?polo=${polo}`;
+ 
+ 
+		/*if(!polo){
+		window.location.href=LINK_FACULDADE;
+		}
+		if(!tipo) {
+		window.location.href=LINK_INSTITUCIONAL;
+		}*/
+ 
+		const sendRequestConfigs = await fetch(`https://raw.githubusercontent.com/Henkribeiro/polos/main/${polo}.json`);
+		let configs = await sendRequestConfigs.json();
+ 
+		configs = {
+			...configs,
+			polo: polo,
+			tipo: tipo
+		}
+ 
+		if (configs["polo-google-gtm"]) {
+			const script = document.createElement('script');
+			script.innerHTML = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${configs["polo-google-gtm"]}');`;
+			document.head.appendChild(script);
+		}
+ 
+		if (configs["polo-facebook-pixel"]) {
+			const script = document.createElement('script');
+			script.innerHTML = `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)}; if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0'; n.queue=[];t=b.createElement(e);t.async=!0; t.src=v;s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${configs["polo-facebook-pixel"]}');`;
+			document.head.appendChild(script);
+		}
+ 
+		function searchAndReplaceKeys(html) {
+			const regex = /{{([^{}]+)}}/g;
+			return html.replace(regex, (match, foundedKey) => {
+				const valor = searchKeyValue(foundedKey, configs);
+				return valor === undefined ? match : valor;
+			});
+		}
+ 
+		function searchKeyValue(chave, obj) {
+			const parts = chave.split('.');
+			let value = obj;
+			for (let part of parts) {
+				if (!value[part]) {
+					if (!value.cursos[part]) {
+						break;
+					} else {
+						value = value.cursos[part];
+						continue;
+					}
+				}
+				value = value[part];
+			}
+			return value;
+		}
+ 
+		const htmlSite = document.getElementById('site').innerHTML;
+		const replacedKeys = searchAndReplaceKeys(htmlSite);
+ 
+		updateDOM(document.getElementById('site'), replacedKeys);
+ 
+		const links = document.querySelectorAll('a[href="{{polo-whatsapp}}"]');
+		links.forEach(link => { link.href = configs['polo-whatsapp']; });
+ 
+		function updateDOM(oldElement, newHTML) {
+ 
+			const newElement = document.createElement('div');
+			newElement.innerHTML = newHTML;
+ 
+			compareDOM(oldElement, newElement);
+ 
+		}
+ 
+		function compareDOM(oldElement, newElement) {
+ 
+			var oldChildrens = Array.from(oldElement.childNodes);
+			var newChildrens = Array.from(newElement.childNodes);
+ 
+			const max = Math.max(oldChildrens.length, newChildrens.length);
+ 
+			for (let index = 0; index < max; index++) {
+ 
+				const oldChild = oldChildrens[index];
+				const newChild = newChildrens[index];
+ 
+				if (oldChild && newChild) {
+ 
+					const isSameType = getNodeType(oldChild) === getNodeType(newChild);
+ 
+					if (isSameType) {
+ 
+						if (['text', 'comment'].includes(getNodeType(newChild))) {
+ 
+							if (newChild.textContent !== oldChild.textContent) oldChild.textContent = newChild.textContent;
+ 
+						} else {
+ 
+							if (getNodeType(oldChild) == 'element' && oldChild.tagName === newChild.tagName) {
+ 
+								updateAttributes(oldChild, newChild);
+								compareDOM(oldChild, newChild);
+ 
+							} else { oldElement.replaceChild(newChild.cloneNode(true), oldChild); }
+ 
+						}
+ 
+					} else { oldElement.replaceChild(newChild.cloneNode(true), oldChild); }
+ 
+				} else if (newChild) {
+					oldElement.appendChild(newChild.cloneNode(true));
+				} else if (oldChild) { oldElement.removeChild(oldChild); }
+ 
+			};
+ 
+		}
+ 
+		function getNodeType(node) {
+ 
+			if (node.nodeType === 1) return 'element';
+			if (node.nodeType === 3) return 'text';
+			if (node.nodeType === 8) return 'comment';
+			return node.tagName.toLowerCase() || undefined;
+ 
+		}
+ 
+		function updateAttributes(oldElement, newElement) {
+ 
+			Array.from(newElement.attributes).forEach(attr => {
+				if (oldElement.getAttribute(attr.name) !== attr.value) {
+					oldElement.setAttribute(attr.name, attr.value);
+					if (oldElement.tagName === 'INPUT' && attr.name === 'value') { oldElement.value = attr.value; }
+					if (oldElement.tagName === 'INPUT' && attr.name === 'checked') { oldElement.checked = attr.checked; }
+					if (oldElement.tagName === 'OPTION' && attr.name === 'selected') { oldElement.selected = attr.selected; }
+				}
+			});
+ 
+			Array.from(oldElement.attributes).forEach(attr => {
+				if (!newElement.hasAttribute(attr.name)) {
+					oldElement.removeAttribute(attr.name);
+				}
+			});
+ 
+		};
+ 
+	})();
+</script>
